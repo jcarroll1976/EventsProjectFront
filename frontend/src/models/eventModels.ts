@@ -5,25 +5,14 @@ export interface ApiResponse{
 export interface Event{
     type: string;
     id: number;
-    datetime_Utc: string;
     venue: Venue;
-    datetime_tbd: boolean;
     performers: Performer[];
-    is_open: boolean;
     datetime_local: string;
-    timeTbd: boolean;
-    short_title: string;
-    visible_until_utc: string;
     taxonomies: Taxonomies[];
     url: string;
-    score: number;
-    announce_date: string;
-    created_at: string;
-    date_tbd: boolean;
     title: string;
     popularity: number;
     description: string;
-    status: string;
 }
 
 export interface Venue{
@@ -31,7 +20,6 @@ export interface Venue{
     name_v2: string;
     postal_code: string;
     name: string;
-    timezone: string;
     url: string;
     score: number;
     location: Location;
@@ -44,7 +32,6 @@ export interface Venue{
     extended_address: string;
     id: number;
     popularity: number;
-    metro_code: number;
     capacity: number;
     display_location: string
 }
