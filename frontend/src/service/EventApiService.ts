@@ -8,3 +8,8 @@ export function fetchAllEvents():Promise<Event[]>{
     return axios.get(`https://api.seatgeek.com/2/events?client_id=${clientID}`)
     .then(response=>response.data.events);
 }
+
+export function fetchRecommendedEvents():Promise<Event[]>{
+    return axios.get(`https://api.seatgeek.com/2/events?client_id=${clientID}`)
+    .then(response=>response.data.events)
+}
