@@ -42,20 +42,32 @@ function UserPreferenceForm({onSubmit}: Props) {
                     <label htmlFor='postalcode'>What is your desired location? </label>
                     <input type ="number"  placeholder = "zipcode" value = {postalCode} onChange =  {e => setpostalCode(e.target.value)}></input>
 
-                    <label htmlFor='type'>Which Type of Events Are You Looking For?</label>
-                    <input type ="checkbox" value = {type} onChange =  {e => settype(e.target.value)}>
-                        <option value="Music">Music</option>
-                        <option value="Sports">Sports</option>
-                        <option value="Comedy">dairy-free</option>
-                        <option value="Broadway">dairy-free</option>
-                    </input>
+                    <label htmlFor='type'>Which Type of Events Are You Looking For? Please select all that apply</label>
+                    <input type ="checkbox" value = {type} onChange =  {e => settype(e.target.value)}></input>
+                    <select>
+                     <option value="Baseball">Baseball</option>
+                     <option value="Football">Football</option>
+                     <option value="Fighting/WWE">Fighting/WWE</option>
+                     <option value="Golf">Golf</option>
+                     <option value ="Hockey">Hockey</option>
+                     <option value= "Soccer">Soccer</option>
+                    </select>
+                    
 
-                    <label htmlFor='type'>Which Type of Events Are You Looking For?</label>
+                    <label htmlFor='type'>What Kind Of Music Do You Like? Please select all that apply</label>
                     <input type ="checkbox" value = {type} onChange =  {e => settype(e.target.value)}>
-                        <option value="Music">Music</option>
-                        <option value="Sports">Sports</option>
-                        <option value="Comedy">dairy-free</option>
-                        <option value="Broadway">dairy-free</option>
+                        <option value="Hard Rock">Hard Rock</option>
+                        <option value="Reggae">Reggae</option>
+                        <option value="Hip Hop">Hip Hop</option>
+                        <option value="Techno">Techno</option>
+                        <option value="Pop">Pop</option>
+                        <option value="Electronic">Electronic</option>
+                        <option value="Folk">Folk</option>
+                        <option value="Punk">Punk</option>
+                        <option value="Soul">Soul</option>
+                        
+
+
                     </input>
 
                     <label htmlFor='capacity'>Is It A Certain Venue Size You Prefer?</label>
