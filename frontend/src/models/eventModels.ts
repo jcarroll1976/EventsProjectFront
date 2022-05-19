@@ -1,5 +1,5 @@
 export interface ApiResponse{
-    events: Event[];
+    allEvents: Event[];
 }
 
 export interface Event{
