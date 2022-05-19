@@ -43,7 +43,7 @@ export interface Performer{
     taxonomies: Taxonomies[];
     url: string;
     score: number;
-    genre: string;
+    genres: string;
 }
 
 export interface Taxonomies{
