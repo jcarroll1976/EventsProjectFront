@@ -1,12 +1,13 @@
 export interface ApiResponse{
-    events: Event[];
+    allEvents: Event[];
 }
+
 
 export interface Event{
     type: string;
     id: number;
     venue: Venue;
-    performers: Performer[];
+    performers: Performers[];
     datetime_local: string;
     taxonomies: Taxonomies[];
     url: string;
@@ -36,7 +37,7 @@ export interface Venue{
     display_location: string
 }
 
-export interface Performer{
+export interface Performers{
     type: string;
     name: string;
     image: string;
