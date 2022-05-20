@@ -36,7 +36,7 @@ export interface Venue{
     display_location: string
 }
 
-export interface Performer{
+export  interface Performer{
     type: string;
     name: string;
     image: string;

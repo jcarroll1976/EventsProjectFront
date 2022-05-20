@@ -5,6 +5,7 @@ import Homepage from './components/Homepage';
 import Header from './components/Header';
 import Signup from './components/Signup';
 import { Container } from 'react-bootstrap'
+import Details from './components/Details';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Homepage/>
       <Container>
       <Signup/>
+      <Details/>
       </Container>
     </div>
   );
