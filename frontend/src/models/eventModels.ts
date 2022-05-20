@@ -49,6 +49,13 @@ export interface Performer{
 export interface Taxonomies{
     id: number;
     name: string;
-    parent_id: number;
-    rank: number;
+}
+
+export interface UserPreference{
+    id?: number; //number or string?? [IMPORT FROM OAUTH CONTEXT]
+    postal_code: string;
+    event: string[];
+    taxonomies: { genre?: string[],
+                 sport?: string[] };
+    event_size?: number;
 }
