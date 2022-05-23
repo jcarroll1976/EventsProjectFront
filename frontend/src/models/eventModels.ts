@@ -54,7 +54,7 @@ export interface Taxonomies{
 export interface UserPreference{
     id?: number; //number or string?? [IMPORT FROM OAUTH CONTEXT]
     postal_code: string;
-    event: string[];
+    eventType: string[];
     taxonomies: { genre?: string[],
                  sport?: string[] };
     event_size?: number;
