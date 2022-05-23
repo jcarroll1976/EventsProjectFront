@@ -21,25 +21,25 @@ let selectedEvent = userData.event;
 let selectedSport = userData.sport;
 let selectedGenre = userData.genre;
 
-let newApiLink = baseUrl;
+let newApiLink = baseUrl+"&postal_code="+postalCode;
 
-/*
 for(let i = 0; i<= selectedEvent.length; i++){
     newApiLink += "&taxonomies.name="+selectedEvent[i];
     if(selectedSport && !selectedGenre){
         newApiLink += "&taxonomies.name="+selectedSport![i];
     }else if(selectedGenre && !selectedSport){
         newApiLink += "&genres.slug="+selectedGenre![i];
-    }else{
+    }else if(selectedGenre && selectedSport){
         newApiLink += "&taxonomies.name="+selectedSport![i]+"&genres.slug="+selectedGenre![i];
     }    
 }
 console.log(newApiLink);
 
     return axios.get(newApiLink)
-    .then(response=>response.data.events)*/
-
-    return axios.get(baseUrl+"&postal_code="+postalCode+"&taxonomies.name=",{
+    .then(response=>response.data.events)
+}
+/*
+    return axios.get(newApiLink+"&taxonomies.name=",{
         params:{
            "taxonomies.name": {selectedEvent, selectedSport},
            "genres.slug": selectedGenre
@@ -49,7 +49,7 @@ console.log(newApiLink);
         }
     })
 
-}
+}*/
 
 
 

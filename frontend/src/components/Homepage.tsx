@@ -7,8 +7,15 @@ import UserPreferenceForm from "./UserPreferenceForm";
 export default function Homepage(){
     const [allEventsList, setAllEventsList] = useState<Event[]>([]);
 
+    let userData = {
+        postal_code: "90210",
+        event: ["concert"],
+        genre: ["rap"],
+        sport: ["basketball"],
+    }
+
     useEffect(()=>{
-        fetchAllEvents().then(data=>{
+        fetchRecommendedEvents(userData).then(data=>{
             setAllEventsList(data);
             console.log(allEventsList);
         })
@@ -24,6 +31,8 @@ export default function Homepage(){
         <div>
             <main>
                 {/*<UserPreferenceForm onSubmit={displayRecommendedEvents}/>*/}
+
+               
 
                 {allEventsList.map((data, i)=>
                     <SingleEvent key={i} event={data}/>
