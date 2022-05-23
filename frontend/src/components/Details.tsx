@@ -16,7 +16,6 @@ export default function Details() {
 }, []);
 
   return (
-      //use id from api
     <div className='Details'>
      <h1>Event Details</h1>
      {allEventsList.map((data, i) =>
