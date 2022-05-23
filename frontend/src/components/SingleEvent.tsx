@@ -12,21 +12,16 @@ export default function SingleEvent({event}:Props){
     return(
         <div className="SingleEvent_Container">
             <h2>{event.title}</h2>
-
-            {event.performers?.map((info, i)=> 
-            <div>
-                <img src= {info.image}/>
-            </div>
-            )}
+            {(event.taxonomies && event.taxonomies.length >= 0) && <p>Event Type: {event.taxonomies[0].name}</p>}
+            {(event.performers && event.performers.length >= 0) && <img src={event.performers[0].image}/>}
+            {event.performers?.map((info, i)=> <p>Performer: {info.name}</p>)}
+            <a href={event.url}>Visit Event Page Here!</a>
             
-            <a>{event.url}</a>
-            {event.performers?.map((info, i)=> <p>{info.name}</p>)}
         </div>
     )
 }
 
-//)
-//event.performers[i].image
+//{event.performers.length >= 0 && <img src={event.performers?[0].image}/>}
 
 //event.performers[i].image.length > 0 && {then show just the first image}
 
@@ -41,6 +36,11 @@ export default function SingleEvent({event}:Props){
 }
 console.log(getImageLink);
 
+ {event.performers?.map((info, i)=> 
+            <div>
+                <img src= {info.image}/>
+            </div>
+            )}
 
 
 

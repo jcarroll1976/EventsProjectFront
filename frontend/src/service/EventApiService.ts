@@ -1,5 +1,7 @@
 import axios from "axios";
 import { ApiResponse, Event, UserPreference } from "../models/eventModels";
+import * as qs from "qs";
+
 
 const clientID = process.env.REACT_APP_MYCLIENTID;
 //const clientSecret = process.env.MYCLIENTSECRET;
@@ -16,11 +18,12 @@ export function fetchRecommendedEvents(userData: UserPreference):Promise<Event[]
 
 let postalCode = userData.postal_code;
 let selectedEvent = userData.event;
-let selectedSport = userData.taxonomies.sport;
-let selectedGenre = userData.taxonomies.genre;
+let selectedSport = userData.sport;
+let selectedGenre = userData.genre;
 
-let newApiLink = baseUrl+"postal_code="+postalCode;
+let newApiLink = baseUrl;
 
+/*
 for(let i = 0; i<= selectedEvent.length; i++){
     newApiLink += "&taxonomies.name="+selectedEvent[i];
     if(selectedSport && !selectedGenre){
@@ -33,22 +36,23 @@ for(let i = 0; i<= selectedEvent.length; i++){
 }
 console.log(newApiLink);
 
-    
     return axios.get(newApiLink)
-    .then(response=>response.data.events)
+    .then(response=>response.data.events)*/
+
+    return axios.get(baseUrl+"&postal_code="+postalCode+"&taxonomies.name=",{
+        params:{
+           "taxonomies.name": {selectedEvent, selectedSport},
+           "genres.slug": selectedGenre
+        },
+        paramsSerializer: params=>{
+            return qs.stringify(params)
+        }
+    })
+
 }
 
 
-/*return axios.get(baseUrl+"&postal_code="+postalCode+"&taxonomies.name=",{
-    params:{
-       selectedEvent,
-       selectedSport,
-       selectedGenre
-    },
-    paramsSerializer: params=>{
-        return qs.stringify(params)
-    }
-})*/
+
 
 
 //Strech-Goal--Incrementing page number with a next button
