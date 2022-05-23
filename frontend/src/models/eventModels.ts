@@ -6,7 +6,7 @@ export interface Event{
     type: string;
     id: number;
     venue: Venue;
-    performers: Performer[];
+    performers: Performer;
     datetime_local: string;
     taxonomies: Taxonomies[];
     url: string;
@@ -39,7 +39,7 @@ export interface Venue{
 export  interface Performer{
     type: string;
     name: string;
-    image: string;
+    0: Zero;
     taxonomies: Taxonomies[];
     url: string;
     score: number;
@@ -51,3 +51,8 @@ export interface Taxonomies{
     parent_id: number;
     rank: number;
 }
+
+export interface Zero {
+    image: string;
+}
+

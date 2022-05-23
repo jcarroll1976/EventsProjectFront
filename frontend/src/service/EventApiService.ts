@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ApiResponse, Event } from "../models/eventModels";
+import { ApiResponse, Event, Performer } from "../models/eventModels";
 
 const clientID = process.env.REACT_APP_MYCLIENTID;
 //const clientSecret = process.env.MYCLIENTSECRET;
