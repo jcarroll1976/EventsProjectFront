@@ -19,21 +19,37 @@ let selectedEvent = userData.event;
 let selectedSport = userData.taxonomies.sport;
 let selectedGenre = userData.taxonomies.genre;
 
-let newApiLink = baseUrl;
-
+let newApiLink = baseUrl+"postal_code="+postalCode;
 
 for(let i = 0; i<= selectedEvent.length; i++){
     newApiLink += "&taxonomies.name="+selectedEvent[i];
+    if(selectedSport && !selectedGenre){
+        newApiLink += "&taxonomies.name="+selectedSport![i];
+    }else if(selectedGenre && !selectedSport){
+        newApiLink += "&genres.slug="+selectedGenre![i];
+    }else{
+        newApiLink += "&taxonomies.name="+selectedSport![i]+"&genres.slug="+selectedGenre![i];
+    }    
 }
+console.log(newApiLink);
 
-    //Postal code always
-    //optional- concert, sports, comedy, broadway/theater, horse_racing, monster_trucks
-    //taxonomies.name=sports&taxonomies.name=concert
-    //concert genres
-    //sport type
+    
     return axios.get(newApiLink)
     .then(response=>response.data.events)
 }
+
+
+/*return axios.get(baseUrl+"&postal_code="+postalCode+"&taxonomies.name=",{
+    params:{
+       selectedEvent,
+       selectedSport,
+       selectedGenre
+    },
+    paramsSerializer: params=>{
+        return qs.stringify(params)
+    }
+})*/
+
 
 //Strech-Goal--Incrementing page number with a next button
 

@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { ApiResponse, Event } from "../models/eventModels";
-import { fetchAllEvents } from "../service/EventApiService";
+import { ApiResponse, Event, UserPreference } from "../models/eventModels";
+import { fetchAllEvents, fetchRecommendedEvents } from "../service/EventApiService";
 import SingleEvent from "./SingleEvent";
+import UserPreferenceForm from "./UserPreferenceForm";
 
 export default function Homepage(){
     const [allEventsList, setAllEventsList] = useState<Event[]>([]);
@@ -13,9 +14,17 @@ export default function Homepage(){
         })
     }, []);
 
+    function displayRecommendedEvents(userPref: UserPreference): void{
+        fetchRecommendedEvents(userPref).then(data =>{
+            setAllEventsList(data);
+        });
+    };
+
     return(
         <div>
             <main>
+                {/*<UserPreferenceForm onSubmit={displayRecommendedEvents}/>*/}
+
                 {allEventsList.map((data, i)=>
                     <SingleEvent key={i} event={data}/>
                 )}
