@@ -14,20 +14,15 @@ interface Props {
     
 
 
-function UserPreferenceForm() {
+function UserPreferenceForm({onSubmit}: Props) {
     const [eventType, seteventType] =useState<string[]>([]);
-    const [event_size, setevent_size]= useState('');
     const [postalCode, setpostalCode]= useState('');
     const [genre, setgenre] = useState<string[]>([]);
     const [sport, setsport] = useState<string[]>([] );
    
 
 
-   
-
-    const handleOnChange = (e: any) => 
-    {
-
+    const handleOnChange = (e: any) => {
        const value = e.target.value;
        const checked = e.target.checked;
        console.log(`${value} is ${checked}`);
@@ -38,39 +33,40 @@ function UserPreferenceForm() {
            setgenre(genre.filter(g => g!== value))
        }
 
+       if (checked) {
+           seteventType(prev => [...prev, value])
+       }else{
+           seteventType(eventType.filter(et =>et! == value))
+       }
+
+       if(checked) {
+           setsport(prev => [...prev, value])
+       }else{
+           setsport(sport.filter(s => s! == value))
+       }
+
 
     }    
 
-    function handleSubmit() {
+    function handleSubmit(e:FormEvent) {
+        e.preventDefault();
+        const UserPref: UserPreference = {
+            postal_code: postalCode,
+            taxonomies: {genre:genre, sport:sport},
+            eventType: eventType,
+            
+        }
+
+        onSubmit(UserPref);
+        seteventType([]);
+        setpostalCode('');
+        setgenre([]);
+
         
+        
+
+
     }
-
-    
-
-    
-
-    const UserPref: UserPreference = {
-        postal_code: postalCode,
-        taxonomies: {genre:genre},
-        event_size:Number(event_size),
-        eventType: eventType
-
-        
-
-
-
-        
-        
-
-        
-    }
-   // onSubmit(UserPref);
-    //seteventType([]);
-    //setevent_size('');
-    //setpostalCode('');
-    //setgenre([]);
-
-//}
 
     return(
         <div className='UserPreferenceForm'>
@@ -79,12 +75,12 @@ function UserPreferenceForm() {
               <h4>PLEASE TAKE OUR QUIZ TO FIND YOUR EVENT STYLE</h4>
 
                 <p>
-
-                  
-
                     <label htmlFor='postalcode'>What is your desired location? </label>
                     <input type ="number"  placeholder = "zipcode" value = {postalCode} onChange =  {e => setpostalCode(e.target.value)} required></input>
+                </p>
 
+
+                <p>
                     <label htmlFor='type'>Which Type of Events Are You Looking For? Please select all that apply</label>
                     <input type ="checkbox" value = {eventType}/> 
                     <select>
@@ -95,31 +91,39 @@ function UserPreferenceForm() {
                      <option value ="HorseRacing">HorseRacing</option>
                      <option value= "Monster Trucks">Monster Trucks</option>
                     </select>
-                    
-                    
+                </p>
 
+                <p>  
                     <label htmlFor='genre'>What Genre Of Music Do You Like? Please select all that apply</label>
                     <input type= "checkbox" value= "Hard Rock" onChange={handleOnChange} />Hard Rock
                     <input type= "checkbox" value= "Reggae" onChange={handleOnChange} />Reggae
-                   
+                    <input type= "checkbox" value= "Hip Hop" onChange={handleOnChange} />Hip Hop
+                    <input type= "checkbox" value= "Techno" onChange={handleOnChange} />Techno
+                    <input type= "checkbox" value= "Pop" onChange={handleOnChange} />Pop
+                    <input type= "checkbox" value= "Electronic" onChange={handleOnChange} />Electronic
+                    <input type= "checkbox" value= "Folk" onChange={handleOnChange} />Folk
+                    <input type= "checkbox" value= "Punk" onChange={handleOnChange} />Punk
+                    <input type= "checkbox" value= "Soul" onChange={handleOnChange} />Soul
+                    <input type= "checkbox" value= "Latin" onChange={handleOnChange} />Latin
+                    <input type= "checkbox" value= "Classical" onChange={handleOnChange} />Classical
+                    <input type= "checkbox" value= "Jazz" onChange={handleOnChange} />Jazz
+                    <input type= "checkbox" value= "Blues" onChange={handleOnChange} />Blues
+                    <input type= "checkbox" value= "Rap" onChange={handleOnChange} />Rap
+                    <input type= "checkbox" value= "Indie" onChange={handleOnChange} />Indie
+                    <input type= "checkbox" value= "Country" onChange={handleOnChange} />Country
+                    <input type= "checkbox" value= "Classic Rock" onChange={handleOnChange} />Classic Rock
+                    <input type= "checkbox" value= "Alternative" onChange={handleOnChange} />Alternative
+                </p>
 
-                        
-                        
-                   
-
-                    <label htmlFor='capacity'>What Type Of Sports Do You Enjoy?</label> 
-                    
-
-
-
-                    <label htmlFor='capacity'>Is It A Certain Venue Size You Prefer?</label>
-                   
-
-
-                    
-
-                    
-
+                <p>
+                    <label htmlFor='eventType'>What Type Of Sports Do You Enjoy?</label> 
+                    <input type= "checkbox" value= "Baseball" onChange={handleOnChange} />Baseball
+                    <input type= "checkbox" value= "Football" onChange={handleOnChange} />Football
+                    <input type= "checkbox" value= "BasketBall" onChange={handleOnChange} />Baseball
+                    <input type= "checkbox" value= "Fighting" onChange={handleOnChange} />Fighting/WWE
+                    <input type= "checkbox" value= "Golf" onChange={handleOnChange} />Golf
+                    <input type= "checkbox" value= "Hockey" onChange={handleOnChange} />Hockey
+                    <input type= "checkbox" value= "Soccer" onChange={handleOnChange} />Soccer
                 </p>
 
                 <input className='submit' type="submit"value ="Submit"/>
