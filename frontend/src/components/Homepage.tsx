@@ -3,6 +3,7 @@ import { ApiResponse, Event, UserPreference } from "../models/eventModels";
 import { fetchAllEvents, fetchRecommendedEvents } from "../service/EventApiService";
 import SingleEvent from "./SingleEvent";
 import UserPreferenceForm from "./UserPreferenceForm";
+import { Link } from "react-router-dom";
 
 
 export default function Homepage(){
@@ -34,7 +35,10 @@ export default function Homepage(){
                 {<UserPreferenceForm onSubmit={displayRecommendedEvents}/>}
 
                 {allEventsList.map((data, i)=>
-                    <SingleEvent key={i} event={data}/>
+                    <div>
+                    <SingleEvent key={i} event={data}/>,
+                    <Link to="/details" state={{event: data}}>Click here for more details!</Link>
+                    </div>
                 )}
                
             </main>

@@ -18,7 +18,7 @@ export default function SingleEvent({event}:Props){
             {event.performers?.map((info, i)=> <p>Performer: {info.name}</p>)}
             <a href={event.url}>Visit Event Page Here!</a>
             <div></div>
-            <Link to={`/Details/${event.id}`}>Click here for more details!</Link>
+            
         </div>
     )
 }

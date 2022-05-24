@@ -10,10 +10,14 @@ interface Props {
 
 export default function Details(){
   const location = useLocation();
+  const state = location.state as Props;
+  const {event} = state;
 
   return (
     <div className='Details'>
      <h1>Event Details</h1>
+     {event.title}
+     {/* ADD MORE EVENT DETAILS HERE*/}
      <button>Save</button>
      <button>Share</button>
      <button>Review</button> 
