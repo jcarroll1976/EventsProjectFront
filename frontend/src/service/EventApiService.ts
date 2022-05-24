@@ -18,43 +18,27 @@ export function fetchRecommendedEvents(userData: UserPreference):Promise<Event[]
 
 let postalCode = userData.postal_code;
 let selectedEvent = userData.event;
-let selectedSport = userData.sport;
-let selectedGenre = userData.genre;
+let selectedSport = userData.sport || [];
+let selectedGenre = userData.genre || [];
 
 let newApiLink = baseUrl+"&postal_code="+postalCode;
 
-for(let i = 0; i<= selectedEvent.length; i++){
-    newApiLink += "&taxonomies.name="+selectedEvent[i];
-    if(selectedSport && !selectedGenre){
-        newApiLink += "&taxonomies.name="+selectedSport![i];
-    }else if(selectedGenre && !selectedSport){
-        newApiLink += "&genres.slug="+selectedGenre![i];
-    }else if(selectedGenre && selectedSport){
-        newApiLink += "&taxonomies.name="+selectedSport![i]+"&genres.slug="+selectedGenre![i];
-    }    
-}
+for(let i = 0; i < selectedEvent.length; i++){
+    newApiLink += "&taxonomies.name="+selectedEvent[i]; 
+    };
+for(let i = 0; i < selectedSport.length; i++){
+    newApiLink += "&taxonomies.name="+selectedSport![i];
+    };
+newApiLink += "&genres.slug=";
+for(let i = 0; i < selectedGenre.length; i++){
+    newApiLink += selectedGenre![i] + "," ;
+    };
+
 console.log(newApiLink);
 
     return axios.get(newApiLink)
     .then(response=>response.data.events)
 }
-/*
-    return axios.get(newApiLink+"&taxonomies.name=",{
-        params:{
-           "taxonomies.name": {selectedEvent, selectedSport},
-           "genres.slug": selectedGenre
-        },
-        paramsSerializer: params=>{
-            return qs.stringify(params)
-        }
-    })
-
-}*/
-
-
-
 
 
 //Strech-Goal--Incrementing page number with a next button
-
-//LOOK INTO PARAMS & STRINGIFY FROM LISA ON SLACK

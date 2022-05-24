@@ -10,7 +10,7 @@ export default function Homepage(){
     let userData = {
         postal_code: "90210",
         event: ["concert"],
-        genre: ["rap"],
+        genre: ["rap", "country"],
         sport: ["basketball"],
     }
 
@@ -31,8 +31,6 @@ export default function Homepage(){
         <div>
             <main>
                 {/*<UserPreferenceForm onSubmit={displayRecommendedEvents}/>*/}
-
-               
 
                 {allEventsList.map((data, i)=>
                     <SingleEvent key={i} event={data}/>

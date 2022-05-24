@@ -57,5 +57,4 @@ export interface UserPreference{
     event: string[];
     genre?: string[],
     sport?: string[];
-    event_size?: number;
 }
