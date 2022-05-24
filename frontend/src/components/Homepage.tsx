@@ -4,6 +4,7 @@ import { fetchAllEvents, fetchRecommendedEvents } from "../service/EventApiServi
 import SingleEvent from "./SingleEvent";
 import UserPreferenceForm from "./UserPreferenceForm";
 
+
 export default function Homepage(){
     const [allEventsList, setAllEventsList] = useState<Event[]>([]);
 
@@ -30,10 +31,12 @@ export default function Homepage(){
     return(
         <div>
             <main>
-                {/*<UserPreferenceForm onSubmit={displayRecommendedEvents}/>*/}
+                {<UserPreferenceForm onSubmit={displayRecommendedEvents}/>}
+
                 {allEventsList.map((data, i)=>
                     <SingleEvent key={i} event={data}/>
                 )}
+               
             </main>
         </div>
     )
