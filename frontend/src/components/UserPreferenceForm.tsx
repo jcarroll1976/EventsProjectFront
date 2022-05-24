@@ -88,14 +88,14 @@ function UserPreferenceForm({onSubmit}: Props) {
                     <input type= "checkbox" value= "Comedy" onChange={handleOnChange} />Comedy
                     <input type= "checkbox" value= "Broadway" onChange={handleOnChange} />Broadway
                     <input type= "checkbox" value= "HorseRacing" onChange={handleOnChange} />HorseRacing
-                    <input type= "checkbox" value= "Monster Trucks" onChange={handleOnChange} />Monster Trucks
+                    <input type= "checkbox" value= "Monster_Trucks" onChange={handleOnChange} />Monster Trucks
                 </p>
 
                 <p>  
                     <label htmlFor='genre'>What Genre Of Music Do You Like? Please select all that apply</label>
-                    <input type= "checkbox" value= "Hard Rock" onChange={handleOnChange} />Hard Rock
+                    <input type= "checkbox" value= "Hard_Rock" onChange={handleOnChange} />Hard Rock
                     <input type= "checkbox" value= "Reggae" onChange={handleOnChange} />Reggae
-                    <input type= "checkbox" value= "Hip Hop" onChange={handleOnChange} />Hip Hop
+                    <input type= "checkbox" value= "Hip_Hop" onChange={handleOnChange} />Hip Hop
                     <input type= "checkbox" value= "Techno" onChange={handleOnChange} />Techno
                     <input type= "checkbox" value= "Pop" onChange={handleOnChange} />Pop
                     <input type= "checkbox" value= "Electronic" onChange={handleOnChange} />Electronic
@@ -109,7 +109,7 @@ function UserPreferenceForm({onSubmit}: Props) {
                     <input type= "checkbox" value= "Rap" onChange={handleOnChange} />Rap
                     <input type= "checkbox" value= "Indie" onChange={handleOnChange} />Indie
                     <input type= "checkbox" value= "Country" onChange={handleOnChange} />Country
-                    <input type= "checkbox" value= "Classic Rock" onChange={handleOnChange} />Classic Rock
+                    <input type= "checkbox" value= "Classic_Rock" onChange={handleOnChange} />Classic Rock
                     <input type= "checkbox" value= "Alternative" onChange={handleOnChange} />Alternative
                 </p>
 
