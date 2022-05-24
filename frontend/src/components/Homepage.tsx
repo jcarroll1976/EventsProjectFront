@@ -31,7 +31,6 @@ export default function Homepage(){
         <div>
             <main>
                 {/*<UserPreferenceForm onSubmit={displayRecommendedEvents}/>*/}
-
                 {allEventsList.map((data, i)=>
                     <SingleEvent key={i} event={data}/>
                 )}
