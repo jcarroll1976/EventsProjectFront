@@ -55,6 +55,6 @@ export interface UserPreference{
     id?: number; //number or string?? [IMPORT FROM OAUTH CONTEXT]
     postal_code: string;
     event: string[];
-    genre?: string[],
+    genre?: string[];
     sport?: string[];
 }
