@@ -7,7 +7,7 @@ export default function Homepage(){
 
     useEffect(()=>{
         fetchAllEvents().then(data=>{
-            setAllEventsList(data);
+           setAllEventsList(data);
             console.log(allEventsList);
         })
     }, []);

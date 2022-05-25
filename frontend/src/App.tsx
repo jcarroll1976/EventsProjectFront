@@ -1,19 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Homepage from './components/Homepage';
 import Header from './components/Header';
-import Signup from './components/Signup';
-import { Container } from 'react-bootstrap'
+import Login from './components/Login';
+
 
 function App() {
+const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   return (
     <div className="App">
       <Header/>
+      <Login/>
       <Homepage/>
-      <Container>
-      <Signup/>
-      </Container>
     </div>
   );
 }
