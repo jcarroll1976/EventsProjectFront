@@ -21,7 +21,7 @@ let selectedEvent = userData.event;
 let selectedSport = userData.sport || [];
 let selectedGenre = userData.genre || [];
 
-let newApiLink = baseUrl+"&postal_code="+postalCode;
+let newApiLink = baseUrl+"&per_page=20"+"&postal_code="+postalCode;
 
 for(let i = 0; i < selectedEvent.length; i++){
     newApiLink += "&taxonomies.name="+selectedEvent[i]; 
