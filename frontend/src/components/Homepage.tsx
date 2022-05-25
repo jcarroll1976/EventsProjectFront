@@ -18,6 +18,7 @@ export default function Homepage(){
     useEffect(()=>{
         fetchRecommendedEvents(userData).then(data=>{
             setAllEventsList(data);
+
             console.log(allEventsList);
         })
     }, []);
