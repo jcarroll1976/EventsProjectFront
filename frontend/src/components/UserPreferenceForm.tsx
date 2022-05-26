@@ -84,7 +84,7 @@ function UserPreferenceForm({onSubmit}: Props) {
                 <p>
                     <label htmlFor='type'>Which Type of Events Are You Looking For? Please select all that apply</label>
                     <input type= "checkbox" value= "Sports" onChange={handleEventChange} />Sports
-                    <input type= "checkbox" value= "Concerts" onChange={handleEventChange} />Concerts
+                    <input type= "checkbox" value= "Concert" onChange={handleEventChange} />Concerts
                     <input type= "checkbox" value= "Comedy" onChange={handleEventChange} />Comedy
                     <input type= "checkbox" value= "Broadway" onChange={handleEventChange} />Broadway
                     <input type= "checkbox" value= "HorseRacing" onChange={handleEventChange} />HorseRacing

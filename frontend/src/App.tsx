@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Homepage from './components/Homepage';
@@ -9,6 +9,8 @@ import Details from './components/Details';
 import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 
 function App() {
+const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   return (
     <div className="App">
       <Router>

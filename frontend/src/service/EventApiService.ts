@@ -1,7 +1,7 @@
 import axios from "axios";
 import { ApiResponse, Event, UserPreference } from "../models/eventModels";
 import * as qs from "qs";
-
+import {auth} from '../firebaseconfig';
 
 const clientID = process.env.REACT_APP_MYCLIENTID;
 //const clientSecret = process.env.MYCLIENTSECRET;
@@ -21,7 +21,7 @@ let selectedEvent = userData.event;
 let selectedSport = userData.sport || [];
 let selectedGenre = userData.genre || [];
 
-let newApiLink = baseUrl+"&postal_code="+postalCode;
+let newApiLink = baseUrl+"&per_page=20"+"&postal_code="+postalCode;
 
 for(let i = 0; i < selectedEvent.length; i++){
     newApiLink += "&taxonomies.name="+selectedEvent[i]; 
@@ -42,3 +42,19 @@ console.log(newApiLink);
 
 
 //Strech-Goal--Incrementing page number with a next button
+/*
+    return axios.get(`https://api.seatgeek.com/2/events?client_id=${clientID}`) 
+    .then(response=>response.data.events);
+}
+*/
+
+//local API
+//what will this return? add it to the promise type.
+// pass in as route param: UserID or UID
+  export async function fetchEvents(userID: string):Promise<any> {
+    return axios.get(`http://localhost:5001/final-project-event-app/us-central1/api/events/${userID}`)
+  }
+
+
+ 
+
