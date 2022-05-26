@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { ApiResponse, Event, UserPreference } from "../models/eventModels";
 import { fetchAllEvents, fetchRecommendedEvents } from "../service/EventApiService";
 import SingleEvent from "./SingleEvent";
 import UserPreferenceForm from "./UserPreferenceForm";
-
+import {signOut} from '../firebaseconfig'
 
 export default function Homepage(){
     const [allEventsList, setAllEventsList] = useState<Event[]>([]);
@@ -28,9 +28,10 @@ export default function Homepage(){
             setAllEventsList(data);
         });
     };
-
+    
     return(
         <div>
+            
             <main>
                 {<UserPreferenceForm onSubmit={displayRecommendedEvents}/>}
 
@@ -39,6 +40,9 @@ export default function Homepage(){
                 )}
                
             </main>
+            <button onClick={signOut}>Sign out</button>
         </div>
     )
 }
+
+

@@ -13,7 +13,6 @@ const [isLoggedIn, setIsLoggedIn] = useState(false);
     <div className="App">
       <Header/>
       <Login/>
-      <Homepage/>
     </div>
   );
 }
