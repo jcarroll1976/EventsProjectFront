@@ -28,12 +28,23 @@ export default function Homepage(){
             setAllEventsList(data);
         });
     };
+
+    const [showPrefForm, setShowPrefForm] = useState(false);
     
     return(
         <div>
-            
             <main>
-                {<UserPreferenceForm onSubmit={displayRecommendedEvents}/>}
+
+            { showPrefForm ?
+            <div>
+            <UserPreferenceForm onSubmit={displayRecommendedEvents}/>
+            <button onClick= {() => setShowPrefForm(false)}>Nevermind!</button>
+            </div>
+             :
+            <button className = "ShowForm" onClick = {() => setShowPrefForm(true)}>Take our Quiz to see personalized events!</button>}
+
+
+               
 
                 {allEventsList.map((data, i)=>
                     <SingleEvent key={i} event={data}/>
