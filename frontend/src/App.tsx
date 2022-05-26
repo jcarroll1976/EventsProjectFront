@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Homepage from './components/Homepage';
 import Header from './components/Header';
-import Signup from './components/Signup';
+import Login from './components/Login';
 import { Container } from 'react-bootstrap'
 import Details from './components/Details';
 import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
@@ -17,8 +17,8 @@ const [isLoggedIn, setIsLoggedIn] = useState(false);
         <Header/>
         <Routes>
         <Route path='/' element = {<Homepage />} />
-         <Route path='/Signup/' element = {<Signup/>} />
-        <Route path='/details' element = {<Details/>}/>
+         <Route path='/Login/' element = {<Login/>} />
+         <Route path='/Details/:id' element = {<Details/>}/>
         <Route path = "*" element={<Navigate to = "/"/>}/>
        </Routes>
       </Router>

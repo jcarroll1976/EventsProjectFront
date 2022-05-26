@@ -38,7 +38,6 @@ export default function Homepage(){
                 {allEventsList.map((data, i)=>
                     <div>
                     <SingleEvent key={i} event={data}/>,
-                    <Link to="/details" state={{event: data}}>Click here for more details!</Link>
                     </div>
                 )}
                

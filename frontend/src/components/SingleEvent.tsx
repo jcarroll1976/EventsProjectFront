@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Event, Performer, Venue, Taxonomies } from "../models/eventModels"
 
 
+
 interface Props{
     event: Event;
 }
@@ -16,7 +17,9 @@ export default function SingleEvent({event}:Props){
             {(event.taxonomies && event.taxonomies.length >= 0) && <p>Event Type: {event.taxonomies[0].name}</p>}
             {(event.performers && event.performers.length >= 0) && <img src={event.performers[0].image}/>}
             {event.performers?.map((info, i)=> <p>Performer: {info.name}</p>)}
-            <a href={event.url}>Visit Event Page Here!</a>
+            <Link to={`/Details/${event.id}`}>
+                <button>Click here for more details!</button>
+            </Link>
             <div></div>
             
         </div>
