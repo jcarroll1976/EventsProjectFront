@@ -22,13 +22,11 @@ export default function Details(){
     <div className='Details'>
 
     <h1>{eventById?.title}</h1>
-    
+    <img src={eventById?.performers![0].image}></img>
     <p>This event is a {eventById?.type} event which will be at {eventById?.venue?.address} {eventById?.venue?.city} {eventById?.venue?.country}. The venue would have a max capacity of {eventById?.venue?.capacity}.</p>
-     <img src={eventById?.performers[0]?.image}></img>
+     <div/>
      <button>Save</button>
-     <div/>
      <button>Share</button>
-     <div/>
      <button>Review</button>
      <div/>
      <a href={eventById?.url}>
