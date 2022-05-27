@@ -23,7 +23,7 @@ export default function Details(){
 
     <h1>{eventById?.title}</h1>
     <img src={eventById?.performers![0].image}></img>
-    <p>This event is a {eventById?.type} event which will be at {eventById?.venue?.address} {eventById?.venue?.city} {eventById?.venue?.country}. The venue would have a max capacity of {eventById?.venue?.capacity}.</p>
+    <p>This event is a {eventById?.type} event the venue is in {eventById?.venue?.name} and have a max capacity of {eventById?.venue?.capacity}. The event will be at {eventById?.venue?.address} {eventById?.venue?.city} {eventById?.venue?.country}.{eventById?.performers?.map((info, i)=> <p> Performers included at event: {info.name}</p>)} </p>
      <div/>
      <button>Save</button>
      <button>Share</button>
