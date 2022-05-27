@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { ApiResponse, Event, UserPreference } from "../models/eventModels";
 import { fetchAllEvents, fetchRecommendedEvents } from "../service/EventApiService";
 import SingleEvent from "./SingleEvent";
 import UserPreferenceForm from "./UserPreferenceForm";
-import { Link } from "react-router-dom";
-
+import {signOut} from '../firebaseconfig'
 
 export default function Homepage(){
     const [allEventsList, setAllEventsList] = useState<Event[]>([]);
@@ -30,10 +29,22 @@ export default function Homepage(){
         });
     };
 
+    const [showPrefForm, setShowPrefForm] = useState(false);
+    
     return(
         <div>
             <main>
-                {<UserPreferenceForm onSubmit={displayRecommendedEvents}/>}
+
+            { showPrefForm ?
+            <div>
+            <UserPreferenceForm onSubmit={displayRecommendedEvents}/>
+            <button onClick= {() => setShowPrefForm(false)}>Nevermind!</button>
+            </div>
+             :
+            <button className = "ShowForm" onClick = {() => setShowPrefForm(true)}>Take our Quiz to see personalized events!</button>}
+
+
+               
 
                 {allEventsList.map((data, i)=>
                     <div>
@@ -42,6 +53,9 @@ export default function Homepage(){
                 )}
                
             </main>
+            <button onClick={signOut}>Sign out</button>
         </div>
     )
 }
+
+
