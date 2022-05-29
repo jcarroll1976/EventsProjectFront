@@ -2,6 +2,10 @@ export interface ApiResponse{
     allEvents: Event[];
 }
 
+export interface UserFavorites{
+    favoriteEvents: Event[];
+}
+
 export interface Event{
     type?: string;
     id?: number;

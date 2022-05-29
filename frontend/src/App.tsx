@@ -16,10 +16,9 @@ const [isLoggedIn, setIsLoggedIn] = useState(false);
       <Router>
         <Header/>
         <Routes>
-        <Route path='/' element = {<Homepage />} />
          <Route path='/Login/' element = {<Login/>} />
          <Route path='/Details/:id' element = {<Details/>}/>
-        <Route path = "*" element={<Navigate to = "/"/>}/>
+        <Route path = "*" element={<Navigate to = "/Login"/>}/>
        </Routes>
       </Router>
     </div>
@@ -27,3 +26,4 @@ const [isLoggedIn, setIsLoggedIn] = useState(false);
 }
 
 export default App;
+

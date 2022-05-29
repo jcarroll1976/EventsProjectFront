@@ -9,7 +9,7 @@ import background from "../pexels-maegan-neufeld-342411.jpg"
 export default function Login() {
     const {user} = useContext(AuthContext)
 
-    const myStyle={
+   /* const myStyle={
         backgroundImage: `url(${background})`,
         height:'100vh',
         marginTop:'-70px',
@@ -17,10 +17,10 @@ export default function Login() {
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         opacity: 0.5
-    };
+    };*/
 
     return (
-        <div className = "LoginComponent" style={myStyle}>
+        <div className = "LoginComponent" /*style={myStyle}*/>
             <h1>Welcome to your personal Event Generator!</h1>
             <h2>Please sign in below.</h2>
             {user ?
@@ -31,13 +31,3 @@ export default function Login() {
     )
 
 }
-
-// original
-/*
-return(
-    <div>
-       <button onClick={signInWithGoogle}>Sign in with Google</button>
-       <button onClick={signOut}>Sign out</button>
-    </div>
-)
-*/

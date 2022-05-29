@@ -38,7 +38,7 @@ export default function Details(){
      <button>Get your tickets with Seat Geek here!</button> 
      </a>
      <div/>
-     <Link to={`/`}>
+     <Link to={`/Login`}>
        <button>Back to the main menu</button>
      </Link>
     </div>
