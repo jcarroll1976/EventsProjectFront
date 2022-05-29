@@ -17,13 +17,18 @@ export default function Details(){
     })
 }, []);
 
+
   //const foundEvent = data.find((event) => event.id === id)
   return (
     <div className='Details'>
-
     <h1>{eventById?.title}</h1>
     <img src={eventById?.performers![0].image}></img>
-    <p>This event is a {eventById?.type} event the venue is in {eventById?.venue?.name} and have a max capacity of {eventById?.venue?.capacity}. The event will be at {eventById?.venue?.address} {eventById?.venue?.city} {eventById?.venue?.country}.{eventById?.performers?.map((info, i)=> <p> Performers included at event: {info.name}</p>)} </p>
+    <p>This event is a {eventById?.type} event.</p>
+    <p>The venue is at {eventById?.venue?.name} and has a max capacity of {eventById?.venue?.capacity}.</p> 
+    <p>The event will be at {eventById?.venue?.address}, {eventById?.venue?.city}, {eventById?.venue?.state}, {eventById?.venue?.country} {eventById?.venue?.postal_code}.</p>
+    <ul>Performers included at event:</ul>
+    {eventById?.performers?.map((info, i)=> 
+    <li>{info.name}</li>)}
      <div/>
      <button>Save</button>
      <button>Share</button>
