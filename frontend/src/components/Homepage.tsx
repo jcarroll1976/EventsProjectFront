@@ -1,18 +1,17 @@
 import { useEffect, useState, useContext } from "react";
 import { ApiResponse, Event, UserFavorites, UserPreference } from "../models/eventModels";
-import { fetchAllEvents, fetchRecommendedEvents } from "../service/EventApiService";
+import { fetchAllEvents, fetchRecommendedEvents, getUserFavorite, getUserPref, postUserFavorite, postUserPref } from "../service/EventApiService";
 import SingleEvent from "./SingleEvent";
 import UserPreferenceForm from "./UserPreferenceForm";
 import {signOut} from '../firebaseconfig'
 import { User } from "firebase/auth";
+import AuthContext from '../context/AuthContext';
 
-interface Props {
-    onSubmit:(UserFavorites: UserFavorites) => void;
-} 
 
-export default function Homepage({onSubmit}: Props){
+
+export default function Homepage(){
     const [allEventsList, setAllEventsList] = useState<Event[]>([]);
-    const [favoriteEvents, setFavoriteEvents] = useState<UserFavorites[]>([]);
+    const {user} = useContext(AuthContext)
 
     let userData = {
         postal_code: "90210",
@@ -22,23 +21,34 @@ export default function Homepage({onSubmit}: Props){
     }
 
     useEffect(()=>{
-        fetchRecommendedEvents(userData).then(data=>{
-            setAllEventsList(data);
-
-            console.log(allEventsList);
+        getUserPref(user!.uid).then(data=>{
+            if(data){
+                fetchRecommendedEvents(data).then(recEvent=>{
+                    setAllEventsList(recEvent);
+                })
+            }else{
+                fetchAllEvents().then(allEvents=>{
+                    setAllEventsList(allEvents);
+                })
+            }
         })
     }, []);
 
+    
     function displayRecommendedEvents(userPref: UserPreference): void{
+        userPref.id = user?.uid;
+        postUserPref(userPref);
         fetchRecommendedEvents(userPref).then(data =>{
             setAllEventsList(data);
         });
     };
 
-    function selectedFavorite(userFavorite: UserFavorites): void{
-        setFavoriteEvents(userFavorite);
-
-    };
+    /*function addSelectedFavorite(event: Event): void{
+       //add logic
+       getUserFavorite(user!.id).then
+       userFavorite.id = user?.uid;
+       postUserFavorite(userFavorite);
+    };*/
 
     const [showPrefForm, setShowPrefForm] = useState(false);
     
@@ -60,8 +70,9 @@ export default function Homepage({onSubmit}: Props){
                 {allEventsList.map((data, i)=>
                     <div>
                     <SingleEvent key={i} event={data}/>,
-                    <button onClick={onSubmit(data)} >Add to favorites</button>
+                    <button /*onClick={addSelectedFavorite(data)}*/>Add to favorites</button>
                     </div>
+                //Add remove from favorites button if add to favorites is clicked
                 )}
                
             </main>
