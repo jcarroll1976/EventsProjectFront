@@ -3,7 +3,7 @@ export interface ApiResponse{
 }
 
 export interface UserFavorites{
-    favoriteEvents: Event[];
+    favoriteEvents: Event;
 }
 
 export interface Event{

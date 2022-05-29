@@ -1,12 +1,18 @@
 import { useEffect, useState, useContext } from "react";
-import { ApiResponse, Event, UserPreference } from "../models/eventModels";
+import { ApiResponse, Event, UserFavorites, UserPreference } from "../models/eventModels";
 import { fetchAllEvents, fetchRecommendedEvents } from "../service/EventApiService";
 import SingleEvent from "./SingleEvent";
 import UserPreferenceForm from "./UserPreferenceForm";
 import {signOut} from '../firebaseconfig'
+import { User } from "firebase/auth";
 
-export default function Homepage(){
+interface Props {
+    onSubmit:(UserFavorites: UserFavorites) => void;
+} 
+
+export default function Homepage({onSubmit}: Props){
     const [allEventsList, setAllEventsList] = useState<Event[]>([]);
+    const [favoriteEvents, setFavoriteEvents] = useState<UserFavorites[]>([]);
 
     let userData = {
         postal_code: "90210",
@@ -29,6 +35,11 @@ export default function Homepage(){
         });
     };
 
+    function selectedFavorite(userFavorite: UserFavorites): void{
+        setFavoriteEvents(userFavorite);
+
+    };
+
     const [showPrefForm, setShowPrefForm] = useState(false);
     
     return(
@@ -49,6 +60,7 @@ export default function Homepage(){
                 {allEventsList.map((data, i)=>
                     <div>
                     <SingleEvent key={i} event={data}/>,
+                    <button onClick={onSubmit(data)} >Add to favorites</button>
                     </div>
                 )}
                
