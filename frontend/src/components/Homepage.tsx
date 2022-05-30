@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import { ApiResponse, Event, UserFavorites, UserPreference } from "../models/eventModels";
-import { fetchAllEvents, fetchRecommendedEvents, getUserFavorite, getUserPref, postUserFavorite, postUserPref } from "../service/EventApiService";
+import { fetchAllEvents, fetchRecommendedEvents, getUserFavorite, getUserPref, postUserFavorite, postUserPref, putUserFavorite } from "../service/EventApiService";
 import SingleEvent from "./SingleEvent";
 import UserPreferenceForm from "./UserPreferenceForm";
 import {signOut} from '../firebaseconfig'
@@ -11,7 +11,7 @@ import AuthContext from '../context/AuthContext';
 
 export default function Homepage(){
     const [allEventsList, setAllEventsList] = useState<Event[]>([]);
-    const {user} = useContext(AuthContext)
+    const {user} = useContext(AuthContext);
 
     let userData = {
         postal_code: "90210",
@@ -43,12 +43,19 @@ export default function Homepage(){
         });
     };
 
-    /*function addSelectedFavorite(event: Event): void{
+    function addSelectedFavorite(favoriteEvent: Event): any{
        //add logic
-       getUserFavorite(user!.id).then
-       userFavorite.id = user?.uid;
-       postUserFavorite(userFavorite);
-    };*/
+       getUserFavorite(user!.uid).then(data=>{
+        //if user.uid exists in favorite db then use put call
+        if(data){
+            putUserFavorite(user!.uid, favoriteEvent);
+        //if user.uid doesn't exisit in favorite db then use push call 
+        }else{
+            postUserFavorite(favoriteEvent);
+        }
+       })
+       
+    };
 
     const [showPrefForm, setShowPrefForm] = useState(false);
     
@@ -70,7 +77,7 @@ export default function Homepage(){
                 {allEventsList.map((data, i)=>
                     <div>
                     <SingleEvent key={i} event={data}/>,
-                    <button /*onClick={addSelectedFavorite(data)}*/>Add to favorites</button>
+                    <button onClick={addSelectedFavorite(data)}>Add to favorites</button>
                     </div>
                 //Add remove from favorites button if add to favorites is clicked
                 )}
