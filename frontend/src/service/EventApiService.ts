@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ApiResponse, Event, UserPreference } from "../models/eventModels";
+import { ApiResponse, Event, UserFavorites, UserPreference } from "../models/eventModels";
 import * as qs from "qs";
 
 
@@ -39,6 +39,39 @@ console.log(newApiLink);
     return axios.get(newApiLink)
     .then(response=>response.data.events)
 }
+
+export function fetchEventById(id:number):Promise<Event>{
+    return axios.get("https://api.seatgeek.com/2/events/"+id+"?client_id="+clientID)
+    .then(response=>response.data)
+}
+
+export function postUserPref(userData: UserPreference):Promise<UserPreference>{
+    return axios.post("https://us-central1-final-project-event-app.cloudfunctions.net/api/preferences", userData)
+    .then(response=>response.data)
+}
+
+export function getUserPref(userId: string):Promise<UserPreference>{
+    return axios.get("https://us-central1-final-project-event-app.cloudfunctions.net/api/preferences/"+userId)
+    .then(response=>response.data)
+}
+
+export function getUserFavorite(id: string): Promise<UserFavorites>{
+    return axios.get("https://us-central1-final-project-event-app.cloudfunctions.net/api/preferences/"+id)
+}
+
+//first favorite added
+export function postUserFavorite(userFavorite: UserFavorites):Promise<UserFavorites>{
+    return axios.post("https://us-central1-final-project-event-app.cloudfunctions.net/api/favorites/", userFavorite)
+    .then(response=>response.data)
+}
+
+//put call- add more to a users favorite list
+export function putUserFavorite(id: string, event: Event):Promise<UserFavorites>{
+    return axios.put("https://us-central1-final-project-event-app.cloudfunctions.net/api/favorites/"+id, event)
+    .then(response=>response.data)
+}
+
+
 
 
 //Strech-Goal--Incrementing page number with a next button

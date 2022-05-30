@@ -2,6 +2,11 @@ export interface ApiResponse{
     allEvents: Event[];
 }
 
+export interface UserFavorites{
+    id?: string;
+    favoriteEvents: Event[];
+}
+
 export interface Event{
     type?: string;
     id?: number;
@@ -52,7 +57,7 @@ export interface Taxonomies{
 }
 
 export interface UserPreference{
-    id?: number; //number or string?? [IMPORT FROM OAUTH CONTEXT]
+    id?: string; 
     postal_code: string;
     event: string[];
     genre?: string[];

@@ -1,0 +1,10 @@
+.Details  {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+.Details P {
+    text-align: center;
+}
