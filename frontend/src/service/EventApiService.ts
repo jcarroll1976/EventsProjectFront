@@ -55,7 +55,7 @@ export function getUserPref(userId: string):Promise<UserPreference>{
     .then(response=>response.data)
 }
 
-export function getUserFavorite(id: string): Promise<UserFavorites>{
+export function getUserFavorite(id: string): Promise<UserFavorites[]>{
     return axios.get("https://us-central1-final-project-event-app.cloudfunctions.net/api/preferences/"+id)
 }
 
@@ -73,5 +73,5 @@ export function putUserFavorite(id: string, event: Event):Promise<UserFavorites>
 
 
 
-
+//Add Delete call for remove Favorites 
 //Strech-Goal--Incrementing page number with a next button
