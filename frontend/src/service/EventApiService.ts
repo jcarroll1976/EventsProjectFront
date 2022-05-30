@@ -60,8 +60,8 @@ export function getUserFavorite(id: string): Promise<UserFavorites[]>{
 }
 
 //first favorite added
-export function postUserFavorite(userFavorite: Event):Promise<UserFavorites>{
-    return axios.post<UserFavorites>("https://us-central1-final-project-event-app.cloudfunctions.net/api/favorites/", userFavorite)
+export function postUserFavorite(userFavorite: UserFavorites):Promise<UserFavorites>{
+    return axios.post("https://us-central1-final-project-event-app.cloudfunctions.net/api/favorites/", userFavorite)
     .then(response=>response.data)
 }
 
