@@ -21,11 +21,14 @@ export default function Login() {
 
     return (
         <div className = "LoginComponent" /*style={myStyle}*/>
-            <h1>Welcome to your personal Event Generator!</h1>
-            <h2>Please sign in below.</h2>
             {user ?
             <div><Homepage/></div>:
-            <div><button onClick={signInWithGoogle}>Sign in with Google</button></div>}
+            <div>
+                <h1>Welcome to your personal Event Generator!</h1>
+                <h2>Please sign in below.</h2>
+                <button onClick={signInWithGoogle}>Sign in with Google</button>
+            </div>
+            }
 
         </div>
     )
