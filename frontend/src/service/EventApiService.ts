@@ -6,7 +6,7 @@ import * as qs from "qs";
 const clientID = process.env.REACT_APP_MYCLIENTID;
 //const clientSecret = process.env.MYCLIENTSECRET;
 
-const baseUrl = `https://api.seatgeek.com/2/events?client_id=${clientID}`;
+const baseUrl = `https://api.seatgeek.com/2/events?client_id=${clientID}&per_page=25`;
 
 export function fetchAllEvents():Promise<Event[]>{
     return axios.get(baseUrl)
