@@ -1,9 +1,10 @@
 import { getFips } from "crypto";
 import { useEffect, useState, useContext } from "react";
-import { getUserFavorite } from "../service/EventApiService";
+import {getUserFavorite } from "../service/EventApiService";
 import SingleEvent from './SingleEvent';
 import AuthContext from '../context/AuthContext';
 import { UserFavorites } from "../models/eventModels";
+import { Link } from "react-router-dom";
 
 
 
@@ -13,11 +14,16 @@ export default function FavoriteEvents() {
     const {user} = useContext(AuthContext);
 
 
-    useEffect(()=>{
+    /*useEffect(()=>{
         getUserFavorite(user!.uid).then(data=>{
             setFavoriteEvents(data);
         })
     }, []);
+
+    function removeFavorite(removedFavorite: UserFavorites): void{
+       
+        deleteUserFavorite();
+    };*/
 
 
     return (
@@ -26,9 +32,13 @@ export default function FavoriteEvents() {
             {favoriteEvents.map((event,i) =>
                 <div>
                 <SingleEvent favoriteEvent={event} key={i}/>
-                    <button>Remove from Favorites</button>
+                    <button /*onClick={()=>{removeFavorite(event)}}*/>Remove from Favorites</button>
                 </div>
             )}
+
+            <Link to={`/Login`}>
+                <button>Back to the main menu</button>
+            </Link>
         </div>
     )
 }
