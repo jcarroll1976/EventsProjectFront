@@ -1,23 +1,45 @@
-import { useState } from "react";
-import SingleEvent from './SingleEvent'
+import { getFips } from "crypto";
+import { useEffect, useState, useContext } from "react";
+import {getUserFavorite } from "../service/EventApiService";
+import SingleEvent from './SingleEvent';
+import AuthContext from '../context/AuthContext';
+import { UserFavorites } from "../models/eventModels";
+import { Link } from "react-router-dom";
 
 
 
 
 export default function FavoriteEvents() {
-    const [events,setEvents] = useState<Event[]>([])
+    const [favoriteEvents, setFavoriteEvents] = useState<UserFavorites>()
+    const {user} = useContext(AuthContext);
 
-    function handleAddEvent(event:Event) {
-        setEvents(prev => [...prev,event])
-    }
+
+    useEffect(()=>{
+        getUserFavorite(user!.uid).then(data=>{
+            console.log(data);
+            setFavoriteEvents(data);
+        })
+    }, []);
+
+    /*function removeFavorite(removedFavorite: UserFavorites): void{
+       
+        deleteUserFavorite();
+    };*/
+
 
     return (
         <div className="FavoritedEvents">
             <h1>Favorited Events</h1>
-            <div>
-                {events.map((event,i) =>
-                    <SingleEvent event = {event} key={i}/>)}
-            </div>
+            {favoriteEvents?.favoriteEvents.map((event,i) =>
+                <div>
+                <SingleEvent event={event} key={i}/>
+                    <button /*onClick={()=>{removeFavorite(event)}}*/>Remove from Favorites</button>
+                </div>
+            )}
+
+            <Link to={`/Login`}>
+                <button>Back to the main menu</button>
+            </Link>
         </div>
     )
 }

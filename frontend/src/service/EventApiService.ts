@@ -1,12 +1,12 @@
 import axios from "axios";
-import { ApiResponse, Event, UserPreference } from "../models/eventModels";
+import { ApiResponse, Event, UserFavorites, UserPreference } from "../models/eventModels";
 import * as qs from "qs";
 
 
 const clientID = process.env.REACT_APP_MYCLIENTID;
 //const clientSecret = process.env.MYCLIENTSECRET;
 
-const baseUrl = `https://api.seatgeek.com/2/events?client_id=${clientID}`;
+const baseUrl = `https://api.seatgeek.com/2/events?client_id=${clientID}&per_page=25`;
 
 export function fetchAllEvents():Promise<Event[]>{
     return axios.get(baseUrl)
@@ -45,5 +45,37 @@ export function fetchEventById(id:number):Promise<Event>{
     .then(response=>response.data)
 }
 
+export function postUserPref(userData: UserPreference):Promise<UserPreference>{
+    return axios.post("https://us-central1-final-project-event-app.cloudfunctions.net/api/preferences", userData)
+    .then(response=>response.data)
+}
 
-//Strech-Goal--Incrementing page number with a next button
+export function getUserPref(userId: string):Promise<UserPreference>{
+    return axios.get("https://us-central1-final-project-event-app.cloudfunctions.net/api/preferences/"+userId)
+    .then(response=>response.data)
+}
+
+export function getUserFavorite(id: string): Promise<UserFavorites>{
+    return axios.get("https://us-central1-final-project-event-app.cloudfunctions.net/api/favorites/"+id)
+    .then(response=>response.data)
+}
+
+//first favorite added
+export function postUserFavorite(userFavorite: UserFavorites):Promise<UserFavorites>{
+    return axios.post("https://us-central1-final-project-event-app.cloudfunctions.net/api/favorites/", userFavorite)
+    .then(response=>response.data)
+}
+
+//put call- add more to a users favorite list
+export function putUserFavorite(id: string, event: Event):Promise<UserFavorites>{
+    return axios.put("https://us-central1-final-project-event-app.cloudfunctions.net/api/favorites/"+id, event)
+    .then(response=>response.data)
+}
+
+export function deleteUserFavorite(id: string, removedFavorite: Event):Promise<UserFavorites>{
+    return axios.delete("https://us-central1-final-project-event-app.cloudfunctions.net/api/favorites/"+id, removedFavorite)
+    .then(response=>response.data)
+}
+
+//Add Delete call for remove Favorites 
+//Strech-Goal--Incrementing page number with a next buttonapi 

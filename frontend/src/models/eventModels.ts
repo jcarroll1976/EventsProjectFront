@@ -3,6 +3,7 @@ export interface ApiResponse{
 }
 
 export interface UserFavorites{
+    id?: string;
     favoriteEvents: Event[];
 }
 
@@ -56,7 +57,7 @@ export interface Taxonomies{
 }
 
 export interface UserPreference{
-    id?: number; //number or string?? [IMPORT FROM OAUTH CONTEXT]
+    id?: string; 
     postal_code: string;
     event: string[];
     genre?: string[];

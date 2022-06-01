@@ -131,16 +131,6 @@ function UserPreferenceForm({onSubmit}: Props) {
             setalternativeCheckBox(e.target.checked)
         }
 
-
-
-        
-
-
-       
-
-
-
-
     }
 
        
@@ -163,7 +153,7 @@ function UserPreferenceForm({onSubmit}: Props) {
             setsportsCheckedBox(e.target.checked)
         }
 
-        if(eventValue === "Concerts") {
+        if(eventValue === "Concert") {
             setconcertsCheckBox(e.target.checked)
         }
 
@@ -283,19 +273,18 @@ function UserPreferenceForm({onSubmit}: Props) {
                 </p>
 
                
-                
-
 
                 <p>
                     <label htmlFor='type'>Which Type of Events Are You Looking For? Please select all that apply</label>
                     <input type= "checkbox" value= "Sports" onChange={handleEventChange} checked={sportsCheckBox} />Sports
-                    <input type= "checkbox" value= "Concerts" onChange={handleEventChange}checked={concertsCheckBox}  />Concerts
+                    <input type= "checkbox" value= "Concert" onChange={handleEventChange}checked={concertsCheckBox}  />Concerts
                     <input type= "checkbox" value= "Comedy" onChange={handleEventChange} checked={comedyCheckBox} />Comedy
                     <input type= "checkbox" value= "Broadway" onChange={handleEventChange} checked={broadwayCheckBox} />Broadway
                     <input type= "checkbox" value= "HorseRacing" onChange={handleEventChange} checked={horseRacingCheckBox} />HorseRacing
                     <input type= "checkbox" value= "Monster_Trucks" onChange={handleEventChange} checked={monsterTrucksCheckBox}/>Monster Trucks
                 </p>
 
+                {eventType.includes("Concert") &&
                 <p>  
                     <label htmlFor='genre'>What Genre Of Music Do You Like? Please select all that apply</label>
                     <input type= "checkbox" value= "Hard_Rock" onChange={handleGenreChange}checked={hardRockCheckBox}  />Hard Rock
@@ -317,7 +306,9 @@ function UserPreferenceForm({onSubmit}: Props) {
                     <input type= "checkbox" value= "Classic_Rock" onChange={handleGenreChange} checked={classicRockCheckBox} />Classic Rock
                     <input type= "checkbox" value= "Alternative" onChange={handleGenreChange} checked={alternativeCheckBox} />Alternative
                 </p>
+                }
 
+                {eventType.includes("Sports") &&
                 <p>
                     <label htmlFor='eventType'>What Type Of Sports Do You Enjoy?</label> 
                     <input type= "checkbox" value= "Baseball" onChange={handleSportChange} checked={baseballCheckBox}  />Baseball
@@ -328,6 +319,7 @@ function UserPreferenceForm({onSubmit}: Props) {
                     <input type= "checkbox" value= "Hockey" onChange={handleSportChange} checked={hockeyCheckBox} />Hockey
                     <input type= "checkbox" value= "Soccer" onChange={handleSportChange} checked={soccerCheckBox} />Soccer
                 </p>
+                }
 
                 <input className='submit' type="submit"value ="Submit"/>
 
