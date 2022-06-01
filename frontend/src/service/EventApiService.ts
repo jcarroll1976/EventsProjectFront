@@ -55,8 +55,9 @@ export function getUserPref(userId: string):Promise<UserPreference>{
     .then(response=>response.data)
 }
 
-export function getUserFavorite(id: string): Promise<UserFavorites[]>{
+export function getUserFavorite(id: string): Promise<UserFavorites>{
     return axios.get("https://us-central1-final-project-event-app.cloudfunctions.net/api/favorites/"+id)
+    .then(response=>response.data)
 }
 
 //first favorite added

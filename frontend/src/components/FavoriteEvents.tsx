@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 
 
 export default function FavoriteEvents() {
-    const [favoriteEvents, setFavoriteEvents] = useState<UserFavorites[]>([])
+    const [favoriteEvents, setFavoriteEvents] = useState<UserFavorites>()
     const {user} = useContext(AuthContext);
 
 
@@ -30,9 +30,9 @@ export default function FavoriteEvents() {
     return (
         <div className="FavoritedEvents">
             <h1>Favorited Events</h1>
-            {favoriteEvents.map((event,i) =>
+            {favoriteEvents?.favoriteEvents.map((event,i) =>
                 <div>
-                <SingleEvent favoriteEvent={event} key={i}/>
+                <SingleEvent event={event} key={i}/>
                     <button /*onClick={()=>{removeFavorite(event)}}*/>Remove from Favorites</button>
                 </div>
             )}
