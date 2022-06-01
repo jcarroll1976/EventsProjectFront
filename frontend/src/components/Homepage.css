@@ -1,0 +1,8 @@
+.Homepage_EventDisplay{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.Homepage_SingleEvent{
+    padding: 10px;
+}

@@ -1,6 +1,7 @@
 import { eventNames } from "process";
 import { Link } from "react-router-dom";
 import { Event, Performer, Venue, Taxonomies, UserFavorites } from "../models/eventModels"
+import "./SingleEvent.css";
 
 
 

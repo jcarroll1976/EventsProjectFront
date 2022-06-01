@@ -6,6 +6,7 @@ import UserPreferenceForm from "./UserPreferenceForm";
 import {signOut} from '../firebaseconfig'
 import { User } from "firebase/auth";
 import AuthContext from '../context/AuthContext';
+import "./Homepage.css";
 
 
 
@@ -73,9 +74,7 @@ export default function Homepage(){
     
     return(
         <div>
-            <main>
-
-            { showPrefForm ?
+             { showPrefForm ?
             <div>
             <UserPreferenceForm onSubmit={displayRecommendedEvents}/>
             <button onClick= {() => setShowPrefForm(false)}>Nevermind!</button>
@@ -83,15 +82,14 @@ export default function Homepage(){
              :
             <button className = "ShowForm" onClick = {() => setShowPrefForm(true)}>Take our Quiz to see personalized events!</button>}
 
-
+            <main className="Homepage_EventDisplay">
                 {allEventsList.map((data, i)=>
-                    <div>
+                    <div className="Homepage_SingleEvent">
                     <SingleEvent key={i} event={data}/>,
                     <button onClick={()=>addSelectedFavorite(data)}>Add to favorites</button>
                     </div>
                 //Add remove from favorites button if add to favorites is clicked
                 )}
-               
             </main>
             <button onClick={signOut}>Sign out</button>
         </div>
