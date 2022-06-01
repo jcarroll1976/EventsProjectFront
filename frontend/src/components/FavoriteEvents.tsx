@@ -14,13 +14,14 @@ export default function FavoriteEvents() {
     const {user} = useContext(AuthContext);
 
 
-    /*useEffect(()=>{
+    useEffect(()=>{
         getUserFavorite(user!.uid).then(data=>{
+            console.log(data);
             setFavoriteEvents(data);
         })
     }, []);
 
-    function removeFavorite(removedFavorite: UserFavorites): void{
+    /*function removeFavorite(removedFavorite: UserFavorites): void{
        
         deleteUserFavorite();
     };*/

@@ -24,7 +24,7 @@ export default function Homepage(){
 
     useEffect(()=>{
         getUserPref(user!.uid).then(data=>{
-            console.log(user!.uid);
+            console.log(`User id: ${user!.uid}`);
             console.log(data);
             if(data){
                 fetchRecommendedEvents(data).then(recEvent=>{
@@ -50,13 +50,14 @@ export default function Homepage(){
 
     //error when return type is void.. check to see if it is okay to do "any" or do onClick={()=>}
     function addSelectedFavorite(favoriteEvent: Event): void{
+        console.log(favoriteEvent);
         //create userFavorite object
         let favorite = {
             id: user?.uid,
             favoriteEvents: [favoriteEvent]
         }
-        //add logic
        getUserFavorite(user!.uid).then(data=>{
+        console.log(data);
         //if user.uid exists in favorite db then use put call
         if(data){
             putUserFavorite(user!.uid, favoriteEvent);
