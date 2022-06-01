@@ -24,6 +24,8 @@ export default function Homepage(){
 
     useEffect(()=>{
         getUserPref(user!.uid).then(data=>{
+            console.log(user!.uid);
+            console.log(data);
             if(data){
                 fetchRecommendedEvents(data).then(recEvent=>{
                     setAllEventsList(recEvent);
@@ -39,10 +41,11 @@ export default function Homepage(){
     
     function displayRecommendedEvents(userPref: UserPreference): void{
         userPref.id = user?.uid;
-        postUserPref(userPref);
-        fetchRecommendedEvents(userPref).then(data =>{
-            setAllEventsList(data);
-        });
+        postUserPref(userPref)
+        .then(newUserPref=>fetchRecommendedEvents(newUserPref).then(data =>{
+            setAllEventsList(data)
+        }));
+        
     };
 
     //error when return type is void.. check to see if it is okay to do "any" or do onClick={()=>}

@@ -1,9 +1,10 @@
 import { getFips } from "crypto";
 import { useEffect, useState, useContext } from "react";
-import { deleteUserFavorite, getUserFavorite } from "../service/EventApiService";
+import {getUserFavorite } from "../service/EventApiService";
 import SingleEvent from './SingleEvent';
 import AuthContext from '../context/AuthContext';
 import { UserFavorites } from "../models/eventModels";
+import { Link } from "react-router-dom";
 
 
 
@@ -34,6 +35,10 @@ export default function FavoriteEvents() {
                     <button /*onClick={()=>{removeFavorite(event)}}*/>Remove from Favorites</button>
                 </div>
             )}
+
+            <Link to={`/Login`}>
+                <button>Back to the main menu</button>
+            </Link>
         </div>
     )
 }

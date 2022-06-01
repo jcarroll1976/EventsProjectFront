@@ -7,6 +7,7 @@ import Login from './components/Login';
 import { Container } from 'react-bootstrap'
 import Details from './components/Details';
 import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import FavoriteEvents from './components/FavoriteEvents';
 
 function App() {
 const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -18,6 +19,7 @@ const [isLoggedIn, setIsLoggedIn] = useState(false);
         <Routes>
          <Route path='/Login/' element = {<Login/>} />
          <Route path='/Details/:id' element = {<Details/>}/>
+         <Route path='/Favorites' element = {<FavoriteEvents/>}/>
         <Route path = "*" element={<Navigate to = "/Login"/>}/>
        </Routes>
       </Router>
