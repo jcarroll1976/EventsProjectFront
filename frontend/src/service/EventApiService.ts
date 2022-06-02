@@ -72,10 +72,11 @@ export function putUserFavorite(id: string, event: Event):Promise<UserFavorites>
     .then(response=>response.data)
 }
 
+//Delete call for remove Favorites 
 export function deleteUserFavorite(id: string, removedFavorite: Event):Promise<void>{
-    return axios.delete("https://us-central1-final-project-event-app.cloudfunctions.net/api/favorites/"+id, removedFavorite)
-    .then(response=>response.data)
+    return axios.delete("https://us-central1-final-project-event-app.cloudfunctions.net/api/favorites/"+id+'/'+removedFavorite.id)
+    .then(response=>console.log("Delete API call:"+response.data))
 }
 
-//Add Delete call for remove Favorites 
+
 //Strech-Goal--Incrementing page number with a next buttonapi 
