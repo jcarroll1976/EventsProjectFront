@@ -72,7 +72,7 @@ export function putUserFavorite(id: string, event: Event):Promise<UserFavorites>
     .then(response=>response.data)
 }
 
-export function deleteUserFavorite(id: string, removedFavorite: Event):Promise<UserFavorites>{
+export function deleteUserFavorite(id: string, removedFavorite: Event):Promise<void>{
     return axios.delete("https://us-central1-final-project-event-app.cloudfunctions.net/api/favorites/"+id, removedFavorite)
     .then(response=>response.data)
 }
