@@ -25,8 +25,7 @@ export default function Login() {
             <div><Homepage/></div>:
             <div>
                 <h1>Welcome to your personal Event Generator!</h1>
-                <h2>Please sign in below.</h2>
-                <button onClick={signInWithGoogle}>Sign in with Google</button>
+                <h2>Please sign in to get events!</h2>
             </div>
             }
 

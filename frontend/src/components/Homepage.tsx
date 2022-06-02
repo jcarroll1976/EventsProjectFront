@@ -92,7 +92,6 @@ export default function Homepage(){
                 //Add remove from favorites button if add to favorites is clicked
                 )}
             </main>
-            <button onClick={signOut}>Sign out</button>
         </div>
     )
 }
