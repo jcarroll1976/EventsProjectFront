@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import { ApiResponse, Event, UserFavorites, UserPreference } from "../models/eventModels";
-import { fetchAllEvents, fetchRecommendedEvents, getUserFavorite, getUserPref, postUserFavorite, postUserPref, putUserFavorite } from "../service/EventApiService";
+import { fetchAllEvents, fetchRecommendedEvents, getUserFavorite, getUserPref, postUserFavorite, postUserPref, putUserFavorite, putUserPref } from "../service/EventApiService";
 import SingleEvent from "./SingleEvent";
 import UserPreferenceForm from "./UserPreferenceForm";
 import {signOut} from '../firebaseconfig'
@@ -42,11 +42,25 @@ export default function Homepage(){
     
     function displayRecommendedEvents(userPref: UserPreference): void{
         userPref.id = user?.uid;
-        postUserPref(userPref)
-        .then(newUserPref=>fetchRecommendedEvents(newUserPref).then(data =>{
-            setAllEventsList(data)
-        }));
-        
+            getUserPref(user!.uid).then(data=>{
+                //if data in userPref DB then PUT call
+                if(data){
+                    putUserPref(user!.uid, userPref)
+                    .then(updatedPref=>fetchRecommendedEvents(updatedPref)
+                    .then(data=>{
+                        setAllEventsList(data)
+                    })
+                    )
+                }
+                //if no data in userPref DB then POST call
+                else{
+                    postUserPref(userPref)
+                    .then(newPref=>fetchRecommendedEvents(newPref)
+                    .then(data=>{
+                        setAllEventsList(data)
+                    }))
+                }
+            });
     };
 
     //error when return type is void.. check to see if it is okay to do "any" or do onClick={()=>}

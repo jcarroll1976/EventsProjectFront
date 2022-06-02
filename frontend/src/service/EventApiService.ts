@@ -50,6 +50,11 @@ export function postUserPref(userData: UserPreference):Promise<UserPreference>{
     .then(response=>response.data)
 }
 
+export function putUserPref(id: string, updatedData: UserPreference):Promise<UserPreference>{
+    return axios.put("https://us-central1-final-project-event-app.cloudfunctions.net/api/preferences/"+id, updatedData)
+    .then(response=>response.data)
+}
+
 export function getUserPref(userId: string):Promise<UserPreference>{
     return axios.get("https://us-central1-final-project-event-app.cloudfunctions.net/api/preferences/"+userId)
     .then(response=>response.data)
@@ -75,7 +80,7 @@ export function putUserFavorite(id: string, event: Event):Promise<UserFavorites>
 //Delete call for remove Favorites 
 export function deleteUserFavorite(id: string, removedFavorite: Event):Promise<void>{
     return axios.delete("https://us-central1-final-project-event-app.cloudfunctions.net/api/favorites/"+id+'/'+removedFavorite.id)
-    .then(response=>console.log("Delete API call:"+response.data))
+    .then(response=>response.data)
 }
 
 
