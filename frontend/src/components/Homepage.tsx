@@ -29,7 +29,7 @@ export default function Homepage(){
             console.log(data);
             if(data){
                 fetchRecommendedEvents(data).then(recEvent=>{
-                    setAllEventsList(recEvent);
+                    setAllEventsList(recEvent); 
                 })
             }else{
                 fetchAllEvents().then(allEvents=>{
@@ -38,8 +38,7 @@ export default function Homepage(){
             }
         })
     }, []);
-
-    
+ 
     function displayRecommendedEvents(userPref: UserPreference): void{
         userPref.id = user?.uid;
             getUserPref(user!.uid).then(data=>{
@@ -97,13 +96,19 @@ export default function Homepage(){
             <button className = "ShowForm" onClick = {() => setShowPrefForm(true)}>Take our Quiz to see personalized events!</button>}
 
             <main className="Homepage_EventDisplay">
-                {allEventsList.map((data, i)=>
+                { allEventsList.length === 0 ? 
+                <div>
+                <p>Oh no! There are no events that fit your most recent parameters.</p>
+                <p> Try retaking the quiz and widening your preferences!</p>
+                </div> :
+                <div>{allEventsList.map((data, i)=>
                     <div className="Homepage_SingleEvent">
                     <SingleEvent key={i} event={data}/>,
                     <button onClick={()=>addSelectedFavorite(data)}>Add to favorites</button>
                     </div>
                 //Add remove from favorites button if add to favorites is clicked
-                )}
+                )}</div>
+                }
             </main>
             <button onClick={signOut}>Sign out</button>
         </div>
