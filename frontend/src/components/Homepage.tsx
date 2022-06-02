@@ -10,6 +10,7 @@ import "./Homepage.css";
 
 
 
+
 export default function Homepage(){
     const [allEventsList, setAllEventsList] = useState<Event[]>([]);
     const {user} = useContext(AuthContext);
