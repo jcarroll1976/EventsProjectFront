@@ -110,16 +110,16 @@ const scrollToTop = () => {
             </>
             }
 
-            <main className="Homepage_EventDisplay">
+            <main>
                 { allEventsList.length === 0 ? 
                 <div>
                 <p>Oh no! There are no events that fit your most recent parameters.</p>
                 <p> Try retaking the quiz and widening your preferences!</p>
                 </div> :
-                <div>{allEventsList.map((data, i)=>
+                <div className="Homepage_EventDisplay">{allEventsList.map((data, i)=>
                     <div className="Homepage_SingleEvent">
                     <SingleEvent key={i} event={data}/>,
-                    <button onClick={()=>addSelectedFavorite(data)}>Add to favorites</button>
+                    <button className="Homepage_AddBtn" onClick={()=>addSelectedFavorite(data)}>Add to favorites</button>
                     </div>
                 //Add remove from favorites button if add to favorites is clicked
                 )}</div>

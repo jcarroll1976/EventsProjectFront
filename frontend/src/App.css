@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .headerdiv {
     position: sticky;
     top: 0px;
@@ -7,3 +8,19 @@
     position: fixed;
 }
 
+=======
+h1{
+    font-family: "Raleway";
+}
+
+body{
+    font-family: "Lato";
+    background-color: lightgray;
+}
+
+button{
+    background-color: #335C67;
+    color: white;
+    border-color: #335C67;
+}
+>>>>>>> origin/styling

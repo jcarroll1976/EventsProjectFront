@@ -20,10 +20,10 @@ export default function Login() {
     };
 
     return (
-        <div className = "LoginComponent" /*style={myStyle}*/>
+        <div className = "LoginComponent" >
             {user ?
             <div><Homepage/></div>:
-            <div>
+            <div /*style={myStyle}*/>
                 <h1>Welcome to your personal Event Generator!</h1>
                 <h2>Please sign in to get events!</h2>
             </div>
