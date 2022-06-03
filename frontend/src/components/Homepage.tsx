@@ -76,7 +76,7 @@ export default function Homepage(){
     return(
         <div>
              { showPrefForm ?
-            <div>
+            <div className="maincontent">
             <UserPreferenceForm onSubmit={displayRecommendedEvents}/>
             <button onClick= {() => setShowPrefForm(false)}>Nevermind!</button>
             </div>

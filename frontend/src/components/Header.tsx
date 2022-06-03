@@ -1,13 +1,15 @@
 import React from 'react';
 import "./Header.css";
 import { Link } from "react-router-dom";
-import Sidebar from './Sidebar';
 import { signInWithGoogle, signOut } from '../firebaseconfig';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import AuthContext from '../context/AuthContext';
+import UserPreferenceForm from './UserPreferenceForm';
 
 export default function Header() {
     const {user} = useContext(AuthContext)
+    const [showPrefForm, setShowPrefForm] = useState(false);
+
     return (
         <div className = "Header">
             <div className="titleheader"><h1>THE EVENT FINDER!!!!!</h1></div>
