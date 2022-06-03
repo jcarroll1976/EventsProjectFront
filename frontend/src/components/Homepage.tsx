@@ -10,6 +10,7 @@ import "./Homepage.css";
 
 
 
+
 export default function Homepage(){
     const [allEventsList, setAllEventsList] = useState<Event[]>([]);
     const {user} = useContext(AuthContext);
@@ -88,7 +89,7 @@ export default function Homepage(){
     return(
         <div>
              { showPrefForm ?
-            <div>
+            <div className="maincontent">
             <UserPreferenceForm onSubmit={displayRecommendedEvents}/>
             <button onClick= {() => setShowPrefForm(false)}>Nevermind!</button>
             </div>
@@ -110,7 +111,6 @@ export default function Homepage(){
                 )}</div>
                 }
             </main>
-            <button onClick={signOut}>Sign out</button>
         </div>
     )
 }
