@@ -14,6 +14,7 @@ function UserPreferenceForm({onSubmit}: Props) {
     const [postalCode, setpostalCode]= useState('');
     const [genre, setgenre] = useState<string[]>([]);
     const [sport, setsport] = useState<string[]>([]);
+    
     const [sportsCheckBox, setsportsCheckedBox] = useState(false);
     const [hardRockCheckBox, sethardRockCheckBox] = useState(false);
     const [concertsCheckBox, setconcertsCheckBox] = useState(false);
@@ -38,6 +39,7 @@ function UserPreferenceForm({onSubmit}: Props) {
     const [countryCheckBox, setcountryCheckBox] = useState(false);
     const [classicRockCheckBox, setclassicRockCheckBox] = useState(false);
     const [alternativeCheckBox, setalternativeCheckBox] = useState(false);
+
     const [baseballCheckBox, setbaseballCheckBox] = useState(false);
     const [footballCheckBox, setfootballCheckBox] = useState(false);
     const [basketballCheckBox, setbasketballCheckBox] = useState(false);
@@ -60,12 +62,17 @@ function UserPreferenceForm({onSubmit}: Props) {
     const handleGenreChange = (e: any) => {
        const genreValue = e.target.value;
        const genreChecked = e.target.checked;
+       const genreUnchecked =e.target.unchecked;
        console.log(`${genreValue} is ${genreChecked}`);
 
        if(genreChecked) {
            setgenre(prev =>[...prev,genreValue])
        }else{
            setgenre(genre.filter(g => g!== genreValue))
+       }
+
+       if (genreUnchecked) {
+           setgenre(prev =>[...prev.splice(genre.length, 1)])
        }
 
        if(genreValue === "Hard_Rock") {
@@ -141,6 +148,7 @@ function UserPreferenceForm({onSubmit}: Props) {
         //setsportsCheckedBox(e.target.checked)
         const eventValue = e.target.value;
         const eventChecked = e.target.checked;
+        const eventUnchecked = e.target.unchecked;
         console.log(`${eventValue} is ${eventChecked}`);
  
         if (eventChecked) {
@@ -148,6 +156,10 @@ function UserPreferenceForm({onSubmit}: Props) {
         }else{
             seteventType(eventType.filter(et =>et! == eventValue))
         }
+
+        if (eventUnchecked) {
+            seteventType(prev =>[...prev.splice(eventType.length, 1)])
+        }    
 
         if(eventValue === "Sports") {
             setsportsCheckedBox(e.target.checked)
@@ -180,13 +192,21 @@ function UserPreferenceForm({onSubmit}: Props) {
      const handleSportChange = (e: any) => {
         const sportValue = e.target.value;
         const sportChecked = e.target.checked;
+        const sportUnchecked = e.target.unchecked;
         console.log(`${sportValue} is ${sportChecked}`);
         
         if(sportChecked) {
             setsport(prev => [...prev,sportValue])
         }else{
+
             setsport(sport.filter(s => s! == sportValue))
         }
+
+        if (sportUnchecked) {
+            setsport(prev =>[...prev.splice(sport.length, 1)])
+        }    
+
+
         if(sportValue === "Baseball") {
             setbaseballCheckBox(e.target.checked)
         }  
@@ -206,11 +226,11 @@ function UserPreferenceForm({onSubmit}: Props) {
             sethockeyCheckBox(e.target.checked)
         }  
         if(sportValue === "Soccer") {
-            setbaseballCheckBox(e.target.checked)
+            setsoccerCheckBox(e.target.checked)
         }  
 
 
-     }
+    }
 
         
 
