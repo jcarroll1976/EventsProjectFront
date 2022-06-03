@@ -1,0 +1,14 @@
+h1{
+    font-family: "Raleway";
+}
+
+body{
+    font-family: "Lato";
+    background-color: lightgray;
+}
+
+button{
+    background-color: #335C67;
+    color: white;
+    border-color: #335C67;
+}
