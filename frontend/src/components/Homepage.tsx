@@ -10,6 +10,7 @@ import "./Homepage.css";
 
 
 
+
 export default function Homepage(){
     const [allEventsList, setAllEventsList] = useState<Event[]>([]);
     const {user} = useContext(AuthContext);
@@ -84,16 +85,30 @@ export default function Homepage(){
     };
 
     const [showPrefForm, setShowPrefForm] = useState(false);
+
+
+
+// This function will scroll the window to the top 
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth' // for smoothly scrolling
+  });
+};
+
     
     return(
         <div>
              { showPrefForm ?
-            <div>
+            <div className="maincontent">
             <UserPreferenceForm onSubmit={displayRecommendedEvents}/>
             <button onClick= {() => setShowPrefForm(false)}>Nevermind!</button>
             </div>
              :
-            <button className = "ShowForm" onClick = {() => setShowPrefForm(true)}>Take our Quiz to see personalized events!</button>}
+             <>
+             <button className = "ShowForm" onClick = {() => {setShowPrefForm(true); scrollToTop()}}>Take our Quiz to see personalized events!</button>
+            </>
+            }
 
             <main>
                 { allEventsList.length === 0 ? 
@@ -110,7 +125,6 @@ export default function Homepage(){
                 )}</div>
                 }
             </main>
-            <button onClick={signOut}>Sign out</button>
         </div>
     )
 }

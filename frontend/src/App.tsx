@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Homepage from './components/Homepage';
@@ -15,14 +15,19 @@ const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <div className="App">
       <Router>
+        <div className="headerdiv">
         <Header/>
+        </div>
+        <div >
         <Routes>
          <Route path='/Login/' element = {<Login/>} />
          <Route path='/Details/:id' element = {<Details/>}/>
          <Route path='/Favorites' element = {<FavoriteEvents/>}/>
         <Route path = "*" element={<Navigate to = "/Login"/>}/>
        </Routes>
+       </div>
       </Router>
+      
     </div>
   );
 }
