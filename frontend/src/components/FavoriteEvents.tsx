@@ -5,6 +5,7 @@ import SingleEvent from './SingleEvent';
 import AuthContext from '../context/AuthContext';
 import { Event, UserFavorites } from "../models/eventModels";
 import { Link } from "react-router-dom";
+import "./FavoriteEvents.css";
 
 
 
@@ -31,14 +32,16 @@ export default function FavoriteEvents() {
 
 
     return (
-        <div className="FavoritedEvents">
+        <div>
             <h1>Favorited Events</h1>
-            {favoriteEvents?.favoriteEvents.map((event,i) =>
-                <div>
-                <SingleEvent event={event} key={i}/>
-                    <button onClick={()=>{removeFavorite(event)}}>Remove from Favorites</button>
-                </div>
-            )}
+            <div className="FavoritedEvents_EventsDisplay">
+                {favoriteEvents?.favoriteEvents.map((event,i) =>
+                    <div className="FavoritedEvents_SingleEvent"> 
+                        <SingleEvent event={event} key={i}/>
+                        <button className="FavoriteEvents_RemoveBtn" onClick={()=>{removeFavorite(event)}}>Remove from Favorites</button>
+                    </div>
+                )}
+            </div>
 
             <Link to={`/Login`}>
                 <button>Back to the main menu</button>

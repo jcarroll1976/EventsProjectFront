@@ -1,0 +1,17 @@
+.FavoritedEvents_EventsDisplay{
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-evenly;
+}
+
+.FavoritedEvents_SingleEvent{
+    padding: 5px 0px;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.FavoriteEvents_RemoveBtn{
+    margin: 10px 10px;
+}

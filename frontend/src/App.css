@@ -12,6 +12,14 @@ button{
     color: white;
     border-color: #335C67;
 }
+
+button:hover{
+    background-color:  white;
+    color:#335C67;
+    border-color: #335C67;
+    font-weight: bold;
+}
+
 .headerdiv {
     position: sticky;
     top: 0px;
