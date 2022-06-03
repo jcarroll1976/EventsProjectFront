@@ -72,6 +72,15 @@ export default function Homepage(){
     };
 
     const [showPrefForm, setShowPrefForm] = useState(false);
+
+
+// This function will scroll the window to the top 
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth' // for smoothly scrolling
+  });
+};
     
     return(
         <div>
@@ -81,7 +90,10 @@ export default function Homepage(){
             <button onClick= {() => setShowPrefForm(false)}>Nevermind!</button>
             </div>
              :
-            <button className = "ShowForm" onClick = {() => setShowPrefForm(true)}>Take our Quiz to see personalized events!</button>}
+             <>
+             <button className = "ShowForm" onClick = {() => {setShowPrefForm(true); scrollToTop()}}>Take our Quiz to see personalized events!</button>
+            </>
+            }
 
             <main className="Homepage_EventDisplay">
                 {allEventsList.map((data, i)=>
