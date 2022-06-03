@@ -1,4 +1,11 @@
 .Header{
     background-color: #335C67;
     color: #FFF3B0;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+h1 {
+    display: flex;
 }
