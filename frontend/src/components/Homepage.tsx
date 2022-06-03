@@ -7,12 +7,16 @@ import {signOut} from '../firebaseconfig'
 import { User } from "firebase/auth";
 import AuthContext from '../context/AuthContext';
 import "./Homepage.css";
-
+import ReactPaginate from "react-paginate";
 
 
 export default function Homepage(){
     const [allEventsList, setAllEventsList] = useState<Event[]>([]);
     const {user} = useContext(AuthContext);
+    const [pageNumber, setPageNumber] = useState(0);
+
+    const eventsPerPage = 10;
+    const pagesVisited = pageNumber * eventsPerPage;
 
    /*
    Hard coded data to test the API call 
@@ -71,7 +75,11 @@ export default function Homepage(){
     };
 
     const [showPrefForm, setShowPrefForm] = useState(false);
-    
+    const pageCount = Math.ceil(allEventsList.length / eventsPerPage);
+
+   /* const changePage = ({ selected }) => {
+      setPageNumber(selected);
+    }; */
     return(
         <div>
              { showPrefForm ?
@@ -91,6 +99,17 @@ export default function Homepage(){
                 //Add remove from favorites button if add to favorites is clicked
                 )}
             </main>
+            <ReactPaginate
+        previousLabel={"Previous"}
+        nextLabel={"Next"}
+        pageCount={pageCount}
+       /* onPageChange={changePage} */
+        containerClassName={"paginationBttns"}
+        previousLinkClassName={"previousBttn"}
+        nextLinkClassName={"nextBttn"}
+        disabledClassName={"paginationDisabled"}
+        activeClassName={"paginationActive"}
+            />
             <button onClick={signOut}>Sign out</button>
         </div>
     )
