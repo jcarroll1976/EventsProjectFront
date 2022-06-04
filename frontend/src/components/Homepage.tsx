@@ -13,6 +13,7 @@ import "./Homepage.css";
 
 export default function Homepage(){
     const [allEventsList, setAllEventsList] = useState<Event[]>([]);
+    const [favoriteExists, setFavoriteExists] = useState(false)
     const {user} = useContext(AuthContext);
 
    /*
@@ -84,6 +85,20 @@ export default function Homepage(){
        
     };
 
+    //Checking user favorites DB
+    
+    /*function checkFavorite():void {
+        getUserFavorite(user!.uid).then(data=>{
+            if(data){
+                setFavoriteExists(true);
+                console.log("Event is in favorites list")
+            }else{
+                setFavoriteExists(false);
+                console.log("Event not in favorites")
+            }
+        })
+    }*/
+
     const [showPrefForm, setShowPrefForm] = useState(false);
 
 
@@ -119,7 +134,9 @@ const scrollToTop = () => {
                 <div className="Homepage_EventDisplay">{allEventsList.map((data, i)=>
                     <div className="Homepage_SingleEvent">
                     <SingleEvent key={i} event={data}/>,
-                    <button className="Homepage_AddBtn" onClick={()=>addSelectedFavorite(data)}>Add to favorites</button>
+                    {/* Add conditional to remove favorite button & add heart */
+                    <button className="Homepage_AddBtn" onClick={()=>{{addSelectedFavorite(data); /*checkFavorite()*/}}}>Add to favorites</button>
+                    }
                     </div>
                 //Add remove from favorites button if add to favorites is clicked
                 )}</div>
