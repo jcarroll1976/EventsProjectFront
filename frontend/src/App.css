@@ -8,6 +8,7 @@ body{
 }
 
 button{
+    font-family: "Lato";
     background-color: #335C67;
     color: white;
     border-color: #335C67;

@@ -10,7 +10,7 @@
     background-color: white;
 }
 .SingleEvent_Container:hover{
-    box-shadow: 20px 20px 50px 10px #E09F3E;
+    box-shadow: 20px 20px 50px 10px #540B0E;
 }
 
 .SingleEvent_Title{
@@ -23,6 +23,10 @@
 .SingleEvent_Img{
     width: 80%;
     border-radius: 20%;
+}
+
+.SingleEvent_DetailsBtn{
+    padding: 10px 30px;
 }
 
 @media only screen and (max-width: 600px) {

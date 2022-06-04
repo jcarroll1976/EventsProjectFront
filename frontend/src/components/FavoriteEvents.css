@@ -14,4 +14,25 @@
 
 .FavoriteEvents_RemoveBtn{
     margin: 10px 10px;
+    padding: 10px;
+}
+
+.FavoriteEvents_RemoveBtn:hover{
+    background-color: #9E2A2B;
+    color: white;
+    border-color: #9E2A2B;
+    box-shadow: 5px 5px 10px 3px #335c67;
+}
+
+@media only screen and (max-width: 600px) {
+    .FavoritedEvents_EventsDisplay{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .FavoritedEvents_SingleEvent{
+        width: 50vw;
+    }
+
 }
