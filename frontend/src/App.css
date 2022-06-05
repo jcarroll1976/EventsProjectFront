@@ -1,3 +1,12 @@
+.headerdiv {
+    position: sticky;
+    top: 0px;
+}
+
+.ShowForm{
+    position: fixed;
+}
+
 h1{
     font-family: "Raleway";
 }
