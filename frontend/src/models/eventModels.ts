@@ -69,6 +69,7 @@ export interface Review {
     name:string;
     review:string;
     userId?:string;
+    eventId?:number;
 }
 
 export interface EventReviews {

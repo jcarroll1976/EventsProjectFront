@@ -5,7 +5,7 @@ interface Props {
     review:Review
 }
 
-function SingleUserReview({review}:Props){
+export default function SingleUserReview({review}:Props){
     return (
         <div className="SingleUserReview">
             <p>{review.title}</p>
@@ -15,4 +15,3 @@ function SingleUserReview({review}:Props){
     )
 }
 
-export default SingleUserReview
