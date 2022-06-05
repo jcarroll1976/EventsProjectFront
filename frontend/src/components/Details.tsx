@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link, useLocation, useParams } from 'react-router-dom';
 import './Details.css';
-import { fetchEventById } from '../service/EventApiService';
+import { fetchEventById, getEventReviews, postUserReview, putUserReview } from '../service/EventApiService';
 import { Event, Review } from '../models/eventModels';
 import UserReviewForm from './UserReviewForm';
 import SingleUserReview from './SingleUserReview';
+import AuthContext from '../context/AuthContext';
 // whenever a user clicks details button link to this page
 
 
@@ -14,6 +15,7 @@ export default function Details(){
   const [eventById, setEventById] = useState<Event|null>(null);
   const [showReviewForm,setShowReviewForm]=useState(false);
   const [reviews,setReviews] = useState([]);
+  const {user} = useContext(AuthContext);
 
   useEffect(()=>{
     fetchEventById(id).then(data=>{
@@ -22,7 +24,20 @@ export default function Details(){
 }, []);
 
 function addReview(review:Review):void{
-  setReviews(prev => [...prev, review])
+  let newReview = {
+    title:review.title,
+    name:review.name,
+    review:review.review,
+    userId:user?.uid
+
+  }
+  getEventReviews(review.eventId!).then(data =>{
+    if(data){
+      putUserReview(review.eventId!, review)
+    } else {
+      postUserReview(userReview)
+    }
+  })
 }
 
   //const foundEvent = data.find((event) => event.id === id)
