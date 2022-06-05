@@ -37,11 +37,10 @@ function addReview(review:Review):void{
     {eventById?.performers?.map((info, i)=> 
     <li>{info.name}</li>)}
      <div/>
-     <button>Save</button>
-     <button>Share</button>
      <button onClick= {() => setShowReviewForm(true)}>Leave A Review!</button>
      {showReviewForm &&
      <UserReviewForm onSubmit={addReview}/>}
+     <button>View Reviews for this event</button>
      <div/>
      <a href={eventById?.url}>
      <button>Get your tickets with Seat Geek here!</button> 
