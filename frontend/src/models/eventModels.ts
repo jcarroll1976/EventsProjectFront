@@ -64,8 +64,15 @@ export interface UserPreference{
     sport?: string[];
 }
 
-export interface Review{
-    title: string;
-    name: string;
-    review: string;
+export interface Review {
+    title:string;
+    name:string;
+    review:string;
+    userId?:string;
+    eventId?:number;
+}
+
+export interface EventReviews {
+    eventId?:number;
+    review: Review[];
 }

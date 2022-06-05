@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ApiResponse, Event, UserFavorites, UserPreference } from "../models/eventModels";
+import { ApiResponse, Event, UserFavorites, UserPreference, EventReviews,Review } from "../models/eventModels";
 import * as qs from "qs";
 
 
@@ -83,5 +83,27 @@ export function deleteUserFavorite(id: string, removedFavorite: Event):Promise<v
     .then(response=>response.data)
 }
 
+// Get all reviews for event
+export function getEventReviews(id:number):Promise<EventReviews>{
+    return axios.get("https://us-central1-final-project-event-app.cloudfunctions.net/api/reviews/"+id)
+    .then(response => response.data)
+}
 
+//Get user's review for event
+export function getUserReview(userId:string):Promise<Review>{
+    return axios.get("https://us-central1-final-project-event-app.cloudfunctions.net/api/reviews/"+userId)
+    .then(response => response.data)
+}
+
+//Submitting user's review for event
+export function postUserReview(userReview: Review):Promise<Review>{
+    return axios.post("https://us-central1-final-project-event-app.cloudfunctions.net/api/reviews", userReview)
+    .then(response=>response.data)
+}
+
+//Editing user review
+export function putUserReview(eventId: number, review: Review):Promise<Review>{
+    return axios.post("https://us-central1-final-project-event-app.cloudfunctions.net/api/reviews"+eventId, review)
+    .then(response=>response.data)
+}
 //Strech-Goal--Incrementing page number with a next buttonapi 

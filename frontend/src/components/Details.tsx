@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { Link, useLocation, useParams } from 'react-router-dom';
 import './Details.css';
 import { fetchEventById } from '../service/EventApiService';
-import { Event } from '../models/eventModels';
+import { Event, Review } from '../models/eventModels';
+import UserReviewForm from './UserReviewForm';
+import SingleUserReview from './SingleUserReview';
 // whenever a user clicks details button link to this page
 
 
@@ -10,6 +12,8 @@ import { Event } from '../models/eventModels';
 export default function Details(){
   const id = Number(useParams().id);
   const [eventById, setEventById] = useState<Event|null>(null);
+  const [showReviewForm,setShowReviewForm]=useState(false);
+  const [reviews,setReviews] = useState([]);
 
   useEffect(()=>{
     fetchEventById(id).then(data=>{
@@ -17,6 +21,9 @@ export default function Details(){
     })
 }, []);
 
+function addReview(review:Review):void{
+  setReviews(prev => [...prev, review])
+}
 
   //const foundEvent = data.find((event) => event.id === id)
   return (
@@ -32,7 +39,9 @@ export default function Details(){
      <div/>
      <button>Save</button>
      <button>Share</button>
-     <button>Review</button>
+     <button onClick= {() => setShowReviewForm(true)}>Leave A Review!</button>
+     {showReviewForm &&
+     <UserReviewForm onSubmit={addReview}/>}
      <div/>
      <a href={eventById?.url}>
      <button>Get your tickets with Seat Geek here!</button> 
