@@ -14,7 +14,7 @@ export default function Details(){
   const id = Number(useParams().id);
   const [eventById, setEventById] = useState<Event|null>(null);
   const [showReviewForm,setShowReviewForm]=useState(false);
-  const [reviews,setReviews] = useState([]);
+  const [reviews,setReviews] = useState<Review[]>([]);
   const {user} = useContext(AuthContext);
 
   useEffect(()=>{
@@ -23,19 +23,20 @@ export default function Details(){
     })
 }, []);
 
-function addReview(review:Review):void{
-  let newReview = {
-    title:review.title,
-    name:review.name,
-    review:review.review,
-    userId:user?.uid
-
+function addReview(userReview:Review):void{
+  let newEventReview = {
+    eventID: userReview.eventId,
+    review: [userReview]
   }
-  getEventReviews(review.eventId!).then(data =>{
+  getEventReviews(userReview.eventId!).then(data =>{
     if(data){
-      putUserReview(review.eventId!, review)
+      putUserReview(userReview.eventId!, userReview).then(data=>{
+        setReviews(prev=> [...prev, userReview]);
+      })
     } else {
-      postUserReview(userReview)
+      postUserReview(newEventReview).then(data=>{
+        setReviews([userReview]);
+      })
     }
   })
 }
@@ -51,20 +52,21 @@ function addReview(review:Review):void{
     <ul>Performers included at event:</ul>
     {eventById?.performers?.map((info, i)=> 
     <li>{info.name}</li>)}
-     <div/>
-     <button onClick= {() => setShowReviewForm(true)}>Leave A Review!</button>
-     {showReviewForm &&
-     <UserReviewForm onSubmit={addReview}/>}
-     <button>View Reviews for this event</button>
-     <div/>
+       
      <a href={eventById?.url}>
      <button>Get your tickets with Seat Geek here!</button> 
      </a>
-     <div/>
-     <Link to={`/Login`}>
-       <button>Back to the main menu</button>
-     </Link>
+     
+     
+     <p>Event Reviews</p>
+     <button onClick= {() => setShowReviewForm(true)}>Leave A Review!</button>
+      {showReviewForm &&
+            <UserReviewForm onSubmit={addReview}/>}
+      {reviews.map((eventReview, i)=> 
+            <SingleUserReview review={eventReview}/>
+        )}
+
     </div>
   )
 }
-//be able to link back to the last page
+

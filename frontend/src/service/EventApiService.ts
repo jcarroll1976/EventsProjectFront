@@ -96,7 +96,7 @@ export function getUserReview(userId:string):Promise<Review>{
 }
 
 //Submitting user's review for event
-export function postUserReview(userReview: Review):Promise<Review>{
+export function postUserReview(userReview: EventReviews):Promise<EventReviews>{
     return axios.post("https://us-central1-final-project-event-app.cloudfunctions.net/api/reviews", userReview)
     .then(response=>response.data)
 }
