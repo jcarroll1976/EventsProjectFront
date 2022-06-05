@@ -61,9 +61,7 @@ function addReview(userReview:Review):void{
      <button>Share</button>
      <button>Review</button>
      <div/>
-     <a href={eventById?.url}>
-     <button>Get your tickets with Seat Geek here!</button> 
-     </a>
+     
      <div/>
      <Link to={`/Login`}>
        <button>Back to the main menu</button>
