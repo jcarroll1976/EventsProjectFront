@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link, useLocation, useParams } from 'react-router-dom';
 import './Details.css';
-import { fetchEventById } from '../service/EventApiService';
-import { Event } from '../models/eventModels';
+import { fetchEventById, getEventReviews, postUserReview, putUserReview } from '../service/EventApiService';
+import { Event, Review } from '../models/eventModels';
+import UserReviewForm from './UserReviewForm';
+import SingleUserReview from './SingleUserReview';
+import AuthContext from '../context/AuthContext';
 // whenever a user clicks details button link to this page
 
 
@@ -10,6 +13,9 @@ import { Event } from '../models/eventModels';
 export default function Details(){
   const id = Number(useParams().id);
   const [eventById, setEventById] = useState<Event|null>(null);
+  const [showReviewForm,setShowReviewForm]=useState(false);
+  const [reviews,setReviews] = useState<Review[]>([]);
+  const {user} = useContext(AuthContext);
 
   useEffect(()=>{
     fetchEventById(id).then(data=>{
@@ -17,6 +23,23 @@ export default function Details(){
     })
 }, []);
 
+function addReview(userReview:Review):void{
+  let newEventReview = {
+    eventID: userReview.eventId,
+    review: [userReview]
+  }
+  getEventReviews(userReview.eventId!).then(data =>{
+    if(data){
+      putUserReview(userReview.eventId!, userReview).then(data=>{
+        setReviews(prev=> [...prev, userReview]);
+      })
+    } else {
+      postUserReview(newEventReview).then(data=>{
+        setReviews([userReview]);
+      })
+    }
+  })
+}
 
   //const foundEvent = data.find((event) => event.id === id)
   return (
@@ -29,19 +52,21 @@ export default function Details(){
     <ul>Performers included at event:</ul>
     {eventById?.performers?.map((info, i)=> 
     <li>{info.name}</li>)}
-     <div/>
-     <button>Save</button>
-     <button>Share</button>
-     <button>Review</button>
-     <div/>
+       
      <a href={eventById?.url}>
      <button>Get your tickets with Seat Geek here!</button> 
      </a>
-     <div/>
-     <Link to={`/Login`}>
-       <button>Back to the main menu</button>
-     </Link>
+     
+     
+     <p>Event Reviews</p>
+     <button onClick= {() => setShowReviewForm(true)}>Leave A Review!</button>
+      {showReviewForm &&
+            <UserReviewForm onSubmit={addReview}/>}
+      {reviews.map((eventReview, i)=> 
+            <SingleUserReview review={eventReview}/>
+        )}
+
     </div>
   )
 }
-//be able to link back to the last page
+
