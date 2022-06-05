@@ -80,24 +80,28 @@ export default function Homepage(){
         console.log(data);
         //if user.uid exists in favorite db then use put call
         if(data){
-            putUserFavorite(user!.uid, favoriteEvent);
+            putUserFavorite(user!.uid, favoriteEvent).then(()=>{
+                getUserFavorite(user!.uid).then(()=>{
+                    setFavoritesList(prev=> [...prev, favoriteEvent]);
+           })
+           })
         //if user.uid doesn't exisit in favorite db then use push call 
         }else{
-            postUserFavorite(favorite);
+            postUserFavorite(favorite).then(()=>{
+                getUserFavorite(user!.uid).then(()=>{
+                    setFavoritesList(prev=> [... prev, favoriteEvent]);
+           })
+           })
         }
-       }).then(()=>{
-            getUserFavorite(user!.uid).then(data=>{
-                setFavoritesList(data.favoriteEvents);
        })
-       })
-       
+
+       console.log(favoriteEvent);      
        
     };
 
     //Checking user favorites DB
-    
     function favoriteExists(event: Event):boolean|undefined {
-        if(favoritesList.some(()=>event===true)){
+        if(favoritesList.some((event)=>event.id)){
             return true;
         }else{
             return false;
@@ -139,8 +143,8 @@ const scrollToTop = () => {
                 <div className="Homepage_EventDisplay">{allEventsList.map((data, i)=>
                     <div className="Homepage_SingleEvent">
                     <SingleEvent key={i} event={data}/>,
-                    {favoriteExists(data)===false &&
-                    <button className="Homepage_AddBtn" onClick={()=>{{addSelectedFavorite(data); /*favoriteExists(data)*/}}}>
+                    {favoriteExists(data)! &&
+                    <button className="Homepage_AddBtn" onClick={()=>{{addSelectedFavorite(data); favoriteExists(data)}}}>
                         Add to favorites
                     </button>
                     }

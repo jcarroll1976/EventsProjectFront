@@ -33,7 +33,7 @@ export default function FavoriteEvents() {
 
     return (
         <div>
-            <h1>Favorited Events</h1>
+            <h1 className="FavoriteEvents_Title">Your Favorited Events!</h1>
             <div className="FavoritedEvents_EventsDisplay">
                 {favoriteEvents?.favoriteEvents.map((event,i) =>
                     <div className="FavoritedEvents_SingleEvent"> 
@@ -42,10 +42,6 @@ export default function FavoriteEvents() {
                     </div>
                 )}
             </div>
-
-            <Link to={`/Login`}>
-                <button>Back to the main menu</button>
-            </Link>
         </div>
     )
 }
