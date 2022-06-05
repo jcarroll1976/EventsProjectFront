@@ -23,12 +23,40 @@ export default function Details(){
     <div className='Details'>
     <h1>{eventById?.title}</h1>
     <img src={eventById?.performers![0].image}></img>
-    <p>This event is a {eventById?.type} event.</p>
+
+    <div className ='EventDetails'>
+
+      <p>This event is a {eventById?.type} event.</p>
+      <p>The venue is at {eventById?.venue?.name} and has a max capacity of {eventById?.venue?.capacity}.</p> 
+      <p>The event will be at {eventById?.venue?.address}, {eventById?.venue?.city}, {eventById?.venue?.state}, {eventById?.venue?.country} {eventById?.venue?.postal_code}.</p>
+      <ul>Performers included at event:</ul>
+      {eventById?.performers?.map((info, i)=> 
+      <li>{info.name}</li>)}
+
+      <div className='Buttons'/>
+     <button>Save</button>
+     <button>Share</button>
+     <button>Review</button>
+     <div/>
+     <a href={eventById?.url}>
+     <button>Get your tickets with Seat Geek here!</button> 
+     </a>
+     <div/>
+     <Link to={`/Login`}>
+       <button>Back to the main menu</button>
+     </Link>
+      </div>
+
+
+    </div>
+
+    /*<p>This event is a {eventById?.type} event.</p>
     <p>The venue is at {eventById?.venue?.name} and has a max capacity of {eventById?.venue?.capacity}.</p> 
     <p>The event will be at {eventById?.venue?.address}, {eventById?.venue?.city}, {eventById?.venue?.state}, {eventById?.venue?.country} {eventById?.venue?.postal_code}.</p>
     <ul>Performers included at event:</ul>
     {eventById?.performers?.map((info, i)=> 
     <li>{info.name}</li>)}
+
      <div/>
      <button>Save</button>
      <button>Share</button>
@@ -41,7 +69,7 @@ export default function Details(){
      <Link to={`/Login`}>
        <button>Back to the main menu</button>
      </Link>
-    </div>
+    </div>*/
   )
 }
 //be able to link back to the last page

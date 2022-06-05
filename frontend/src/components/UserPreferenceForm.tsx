@@ -146,7 +146,7 @@ function UserPreferenceForm({onSubmit}: Props) {
         if (eventChecked) {
             seteventType(prev => [...prev, eventValue])
         }else{
-            seteventType(eventType.filter(et =>et! == eventValue))
+            seteventType(eventType.filter(et => et!== eventValue))
         }
 
         if(eventValue === "Sports") {
@@ -185,7 +185,7 @@ function UserPreferenceForm({onSubmit}: Props) {
         if(sportChecked) {
             setsport(prev => [...prev,sportValue])
         }else{
-            setsport(sport.filter(s => s! == sportValue))
+            setsport(sport.filter(s => s!== sportValue))
         }
         if(sportValue === "Baseball") {
             setbaseballCheckBox(e.target.checked)
@@ -206,7 +206,7 @@ function UserPreferenceForm({onSubmit}: Props) {
             sethockeyCheckBox(e.target.checked)
         }  
         if(sportValue === "Soccer") {
-            setbaseballCheckBox(e.target.checked)
+            setsoccerCheckBox(e.target.checked)
         }  
 
 
