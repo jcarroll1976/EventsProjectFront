@@ -42,6 +42,7 @@ export default function Homepage(){
         getUserFavorite(user!.uid).then(data=>{
             setFavoritesList(data.favoriteEvents);
         })
+        console.log(favoritesList);
     }, []);
  
     function displayRecommendedEvents(userPref: UserPreference): void{
@@ -84,14 +85,19 @@ export default function Homepage(){
         }else{
             postUserFavorite(favorite);
         }
+       }).then(()=>{
+            getUserFavorite(user!.uid).then(data=>{
+                setFavoritesList(data.favoriteEvents);
        })
+       })
+       
        
     };
 
     //Checking user favorites DB
     
     function favoriteExists(event: Event):boolean|undefined {
-        if(favoritesList.includes(event)){
+        if(favoritesList.some(()=>event===true)){
             return true;
         }else{
             return false;
@@ -134,7 +140,9 @@ const scrollToTop = () => {
                     <div className="Homepage_SingleEvent">
                     <SingleEvent key={i} event={data}/>,
                     {favoriteExists(data)===false &&
-                    <button className="Homepage_AddBtn" onClick={()=>{{addSelectedFavorite(data); favoriteExists(data)}}}>Add to favorites</button>
+                    <button className="Homepage_AddBtn" onClick={()=>{{addSelectedFavorite(data); /*favoriteExists(data)*/}}}>
+                        Add to favorites
+                    </button>
                     }
                     </div>
                 //Add remove from favorites button if add to favorites is clicked
