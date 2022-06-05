@@ -63,3 +63,15 @@ export interface UserPreference{
     genre?: string[];
     sport?: string[];
 }
+
+export interface Review {
+    title:string;
+    name:string;
+    review:string;
+    userId?:string;
+}
+
+export interface EventReviews {
+    eventId?:number;
+    review: Review[];
+}
