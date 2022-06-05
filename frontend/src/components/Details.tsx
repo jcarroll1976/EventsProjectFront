@@ -14,7 +14,7 @@ export default function Details(){
   const id = Number(useParams().id);
   const [eventById, setEventById] = useState<Event|null>(null);
   const [showReviewForm,setShowReviewForm]=useState(false);
-  const [reviews,setReviews] = useState([]);
+  const [reviews,setReviews] = useState<Review[]>([]);
   const {user} = useContext(AuthContext);
 
   useEffect(()=>{
@@ -23,19 +23,20 @@ export default function Details(){
     })
 }, []);
 
-function addReview(review:Review):void{
-  let newReview = {
-    title:review.title,
-    name:review.name,
-    review:review.review,
-    userId:user?.uid
-
+function addReview(userReview:Review):void{
+  let newEventReview = {
+    eventID: userReview.eventId,
+    review: [userReview]
   }
-  getEventReviews(review.eventId!).then(data =>{
+  getEventReviews(userReview.eventId!).then(data =>{
     if(data){
-      putUserReview(review.eventId!, review)
+      putUserReview(userReview.eventId!, userReview).then(data=>{
+        setReviews(prev=> [...prev, userReview]);
+      })
     } else {
-      postUserReview(userReview)
+      postUserReview(newEventReview).then(data=>{
+        setReviews([userReview]);
+      })
     }
   })
 }
@@ -69,31 +70,20 @@ function addReview(review:Review):void{
      </Link>
       </div>
 
-
-    </div>
-
-    /*<p>This event is a {eventById?.type} event.</p>
-    <p>The venue is at {eventById?.venue?.name} and has a max capacity of {eventById?.venue?.capacity}.</p> 
-    <p>The event will be at {eventById?.venue?.address}, {eventById?.venue?.city}, {eventById?.venue?.state}, {eventById?.venue?.country} {eventById?.venue?.postal_code}.</p>
-    <ul>Performers included at event:</ul>
-    {eventById?.performers?.map((info, i)=> 
-    <li>{info.name}</li>)}
-
-     <div/>
-     <button>Save</button>
-     <button>Share</button>
-     <button onClick= {() => setShowReviewForm(true)}>Leave A Review!</button>
-     {showReviewForm &&
-     <UserReviewForm onSubmit={addReview}/>}
-     <div/>
      <a href={eventById?.url}>
      <button>Get your tickets with Seat Geek here!</button> 
      </a>
-     <div/>
-     <Link to={`/Login`}>
-       <button>Back to the main menu</button>
-     </Link>
-    </div>*/
+     
+     
+     <p>Event Reviews</p>
+     <button onClick= {() => setShowReviewForm(true)}>Leave A Review!</button>
+      {showReviewForm &&
+            <UserReviewForm onSubmit={addReview}/>}
+      {reviews.map((eventReview, i)=> 
+            <SingleUserReview review={eventReview}/>
+        )}
+
+    </div>
   )
 }
-//be able to link back to the last page
+

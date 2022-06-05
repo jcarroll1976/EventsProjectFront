@@ -52,4 +52,4 @@ function UserReviewForm({onSubmit}:Props) {
     }
 
 
-export default UserReviewForm
+export default UserReviewForm;
