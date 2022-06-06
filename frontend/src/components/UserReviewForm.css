@@ -1,0 +1,15 @@
+.UserReviewForm {
+    display:flex;
+    border-radius: 10px;
+    flex-direction: column;
+    margin:20px;
+    font-family: "Lato";
+    background-color: #335C67;
+    border:solid 2px #335C67;
+    color:white;
+}
+
+.UserReviewForm input {
+    margin:10px;
+    border-radius:10px;
+} 
