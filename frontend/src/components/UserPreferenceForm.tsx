@@ -268,56 +268,62 @@ function UserPreferenceForm({onSubmit}: Props) {
               <h2>PLEASE TAKE OUR QUIZ TO FIND YOUR EVENT STYLE</h2>
 
                 <p>
-                    <label htmlFor='postalcode'>What is your desired location? </label>
+                    <label className="UserPref_QuestionTitle" htmlFor='postalcode'>What is your desired location? </label>
                     <input type ="number"  placeholder = "zipcode" value = {postalCode} onChange =  {e => setpostalCode(e.target.value)} required></input>
                 </p>
 
                
 
                 <p>
-                    <label htmlFor='type'>Which Type of Events Are You Looking For? Please select all that apply</label>
-                    <input type= "checkbox"  value= "Sports" onChange={handleEventChange} checked={sportsCheckBox}  />Sports
-                    <input type= "checkbox" value= "Concert" onChange={handleEventChange}checked={concertsCheckBox}  />Concerts
-                    <input type= "checkbox" value= "Comedy" onChange={handleEventChange} checked={comedyCheckBox} />Comedy
-                    <input type= "checkbox" value= "Broadway" onChange={handleEventChange} checked={broadwayCheckBox} />Broadway
-                    <input type= "checkbox" value= "HorseRacing" onChange={handleEventChange} checked={horseRacingCheckBox} />HorseRacing
-                    <input type= "checkbox" value= "Monster_Trucks" onChange={handleEventChange} checked={monsterTrucksCheckBox}/>Monster Trucks
+                    <label className="UserPref_QuestionTitle" htmlFor='type'>Which Type of Events Are You Looking For? Please select all that apply</label>
+                    <div className="UserPref_EventTypeInput">
+                        <input type= "checkbox"  value= "Sports" onChange={handleEventChange} checked={sportsCheckBox}  />Sports
+                        <input type= "checkbox" value= "Concert" onChange={handleEventChange}checked={concertsCheckBox}  />Concerts
+                        <input type= "checkbox" value= "Comedy" onChange={handleEventChange} checked={comedyCheckBox} />Comedy
+                        <input type= "checkbox" value= "Broadway" onChange={handleEventChange} checked={broadwayCheckBox} />Broadway
+                        <input type= "checkbox" value= "HorseRacing" onChange={handleEventChange} checked={horseRacingCheckBox} />HorseRacing
+                        <input type= "checkbox" value= "Monster_Trucks" onChange={handleEventChange} checked={monsterTrucksCheckBox}/>Monster Trucks
+                    </div>
                 </p>
 
                 {eventType.includes("Concert") &&
                 <p className='genre'>  
-                    <label htmlFor='genre'>What Genre Of Music Do You Like? Please select all that apply</label>
-                    <input type= "checkbox" value= "Hard_Rock" onChange={handleGenreChange}checked={hardRockCheckBox}  />Hard Rock
-                    <input type= "checkbox" value= "Reggae" onChange={handleGenreChange} checked ={reggaeCheckBox}/>Reggae 
-                    <input type= "checkbox" value= "Hip_Hop" onChange={handleGenreChange} checked={hipHopCheckBox} />Hip Hop
-                    <input type= "checkbox" value= "Techno" onChange={handleGenreChange}checked={technoCheckBox}  />Techno
-                    <input type= "checkbox" value= "Pop" onChange={handleGenreChange} checked={popCheckBox} />Pop
-                    <input type= "checkbox" value= "Electronic" onChange={handleGenreChange}checked={electronicCheckBox}  />Electronic
-                    <input type= "checkbox" value= "Folk" onChange={handleGenreChange} checked={folkCheckBox} />Folk
-                    <input type= "checkbox" value= "Punk" onChange={handleGenreChange}checked={punkCheckBox}  />Punk
-                    <input type= "checkbox" value= "Soul" onChange={handleGenreChange} checked={soulCheckBox} />Soul
-                    <input type= "checkbox" value= "Latin" onChange={handleGenreChange} checked={latinCheckBox} />Latin
-                    <input type= "checkbox" value= "Classical" onChange={handleGenreChange}checked={classicalCheckBox}  />Classical
-                    <input type= "checkbox" value= "Jazz" onChange={handleGenreChange} checked={jazzCheckBox} />Jazz
-                    <input type= "checkbox" value= "Blues" onChange={handleGenreChange}checked={bluesCheckBox}  />Blues
-                    <input type= "checkbox" value= "Rap" onChange={handleGenreChange} checked={rapCheckBox} />Rap
-                    <input type= "checkbox" value= "Indie" onChange={handleGenreChange}checked={indieCheckBox}  />Indie
-                    <input type= "checkbox" value= "Country" onChange={handleGenreChange} checked={countryCheckBox}  />Country
-                    <input type= "checkbox" value= "Classic_Rock" onChange={handleGenreChange} checked={classicRockCheckBox} />Classic Rock
-                    <input type= "checkbox" value= "Alternative" onChange={handleGenreChange} checked={alternativeCheckBox} />Alternative
+                    <label className="UserPref_QuestionTitle" htmlFor='genre'>What Genre Of Music Do You Like? Please select all that apply</label>
+                    <div className="UserPref_GenreInput_Container">
+                        <input className="UserPref_GenreInput" type= "checkbox" value= "Hard_Rock" onChange={handleGenreChange}checked={hardRockCheckBox}  />Hard Rock
+                        <input className="UserPref_GenreInput" type= "checkbox" value= "Reggae" onChange={handleGenreChange} checked ={reggaeCheckBox}/>Reggae 
+                        <input className="UserPref_GenreInput" type= "checkbox" value= "Hip_Hop" onChange={handleGenreChange} checked={hipHopCheckBox} />Hip Hop
+                        <input className="UserPref_GenreInput" type= "checkbox" value= "Techno" onChange={handleGenreChange}checked={technoCheckBox}  />Techno
+                        <input className="UserPref_GenreInput" type= "checkbox" value= "Pop" onChange={handleGenreChange} checked={popCheckBox} />Pop
+                        <input className="UserPref_GenreInput" type= "checkbox" value= "Electronic" onChange={handleGenreChange}checked={electronicCheckBox}  />Electronic
+                        <input className="UserPref_GenreInput" type= "checkbox" value= "Folk" onChange={handleGenreChange} checked={folkCheckBox} />Folk
+                        <input className="UserPref_GenreInput" type= "checkbox" value= "Punk" onChange={handleGenreChange}checked={punkCheckBox}  />Punk
+                        <input className="UserPref_GenreInput" type= "checkbox" value= "Soul" onChange={handleGenreChange} checked={soulCheckBox} />Soul
+                        <input className="UserPref_GenreInput" type= "checkbox" value= "Latin" onChange={handleGenreChange} checked={latinCheckBox} />Latin
+                        <input className="UserPref_GenreInput" type= "checkbox" value= "Classical" onChange={handleGenreChange}checked={classicalCheckBox}  />Classical
+                        <input className="UserPref_GenreInput" type= "checkbox" value= "Jazz" onChange={handleGenreChange} checked={jazzCheckBox} />Jazz
+                        <input className="UserPref_GenreInput" type= "checkbox" value= "Blues" onChange={handleGenreChange}checked={bluesCheckBox}  />Blues
+                        <input className="UserPref_GenreInput" type= "checkbox" value= "Rap" onChange={handleGenreChange} checked={rapCheckBox} />Rap
+                        <input className="UserPref_GenreInput" type= "checkbox" value= "Indie" onChange={handleGenreChange}checked={indieCheckBox}  />Indie
+                        <input className="UserPref_GenreInput" type= "checkbox" value= "Country" onChange={handleGenreChange} checked={countryCheckBox}  />Country
+                        <input className="UserPref_GenreInput" type= "checkbox" value= "Classic_Rock" onChange={handleGenreChange} checked={classicRockCheckBox} />Classic Rock
+                        <input className="UserPref_GenreInput" type= "checkbox" value= "Alternative" onChange={handleGenreChange} checked={alternativeCheckBox} />Alternative
+                    </div>
                 </p>
                 }
 
                 {eventType.includes("Sports") &&
                 <p>
-                    <label htmlFor='eventType'>What Type Of Sports Do You Enjoy?</label> 
-                    <input type= "checkbox" value= "Baseball" onChange={handleSportChange} checked={baseballCheckBox}  />Baseball
-                    <input type= "checkbox" value= "Football" onChange={handleSportChange} checked={footballCheckBox} />Football
-                    <input type= "checkbox" value= "Basketball" onChange={handleSportChange} checked={basketballCheckBox}  />Basketball
-                    <input type= "checkbox" value= "Fighting" onChange={handleSportChange} checked={fightingCheckBox}  />Fighting/WWE
-                    <input type= "checkbox" value= "Golf" onChange={handleSportChange} checked={golfCheckBox}  />Golf
-                    <input type= "checkbox" value= "Hockey" onChange={handleSportChange} checked={hockeyCheckBox} />Hockey
-                    <input type= "checkbox" value= "Soccer" onChange={handleSportChange} checked={soccerCheckBox} />Soccer
+                    <label className="UserPref_QuestionTitle" htmlFor='eventType'>What Type Of Sports Do You Enjoy?</label> 
+                    <div className="UserPref_SportInput">
+                        <input type= "checkbox" value= "Baseball" onChange={handleSportChange} checked={baseballCheckBox}  />Baseball
+                        <input type= "checkbox" value= "Football" onChange={handleSportChange} checked={footballCheckBox} />Football
+                        <input type= "checkbox" value= "Basketball" onChange={handleSportChange} checked={basketballCheckBox}  />Basketball
+                        <input type= "checkbox" value= "Fighting" onChange={handleSportChange} checked={fightingCheckBox}  />Fighting/WWE
+                        <input type= "checkbox" value= "Golf" onChange={handleSportChange} checked={golfCheckBox}  />Golf
+                        <input type= "checkbox" value= "Hockey" onChange={handleSportChange} checked={hockeyCheckBox} />Hockey
+                        <input type= "checkbox" value= "Soccer" onChange={handleSportChange} checked={soccerCheckBox} />Soccer
+                    </div>
                 </p>
                 }
 

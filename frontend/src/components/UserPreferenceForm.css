@@ -1,44 +1,54 @@
 .UserPreferenceForm {
     border-style: ridge;
     border-color: #9E2A2B;
+    background-color: RGB(51, 92, 103, 0.6);
+    color: white;
+    text-shadow: 3px 3px 5px #335c67;
     border-width: 5px;
-    border-radius: 10%;
-    width: 50%;
+    width: 100%;
     text-align: center;
     display: flex;
     margin-left: auto;
     margin-right: auto;
     margin-top: 10px;
-    
+    padding: 10px;
+    font-family: "Raleway";
 }
 
-.type{
+.UserPref_EventTypeInput{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.UserPref_SportInput{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.UserPref_GenreInput_Container{
+    display: flex;
+    justify-content: space-between;
+    flex-flow: wrap;
+}
+
+.UserPref_GenreInput{
+    color: red;
+}
+
+.UserPref_QuestionTitle{
+    font-weight: bold;
+    color:black;
+}
+
+/*.type{
     text-align: start;
-}
-
-p{
-    text-align: center;
-}
-
-
-/*.maincontent{
-    border-style: ridge;
-    border-color: #9E2A2B;
-    border-width: 5px;
-    border-radius: 10%;
-    width: 70%;
-    text-align: center;
-    display: flex;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 10px;
-
 }*/
 
-input[type=number]:focus {
+
+/*input[type=number]:focus {
     background-color: lightblue;
 
-}
+}*/
    
 
 
@@ -46,10 +56,14 @@ input[type=number]:focus {
     margin: 0px 10px;
     padding: 5px;
     background-color: #9E2A2B;
+    margin-bottom: 10px;
+    color: white;
+    font-weight: bold;
 }
 
 .submit:hover{
-    color: white;
+    color: #9E2A2B;
+    background-color: white;
     border-color: #9E2A2B;
     box-shadow: 5px 5px 10px 3px #335c67;
 }
