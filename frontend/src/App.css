@@ -3,10 +3,6 @@
     top: 0px;
 }
 
-.ShowForm{
-    position: fixed;
-}
-
 h1{
     font-family: "Raleway";
 }
@@ -35,7 +31,14 @@ button:hover{
     top: 0px;
 }
 
-.ShowForm{
+.ShowForm_Fixed{
     position: fixed;
+    border-style: solid;
+    margin: 20px;
+    font-family: "Raleway";
+    font-weight: bold;
+    padding: 10px;
+    border-width: 5px;
+    border-color: white;
 }
 

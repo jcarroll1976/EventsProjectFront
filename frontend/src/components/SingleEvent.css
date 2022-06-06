@@ -6,9 +6,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    padding: 30px;
     background-color: white;
+    width: 100%;
 }
+
 .SingleEvent_Container:hover{
     box-shadow: 20px 20px 50px 10px #540B0E;
 }
@@ -21,15 +23,31 @@
 }
 
 .SingleEvent_Img{
-    width: 80%;
+    width: 100%;
     border-radius: 20%;
+    box-shadow: 5px 3px 10px 5px #335c67;
 }
 
 .SingleEvent_DetailsBtn{
     padding: 10px 30px;
 }
 
-@media only screen and (max-width: 600px) {
-    
+.SingleEvent_heart{
+    color:#9E2A2B;
+    font-size: 50px;
+    text-shadow: -2px 3px 2px #335c67;
+}
 
+.SingleEvent_TitleContainer{
+    display: flex;
+}
+
+@media only screen and (max-width: 600px) {
+    .SingleEvent_Img{
+        width: 90%;
+    }
+
+    .SingleEvent_Title{
+        font-size: 15px;
+    }
 }
