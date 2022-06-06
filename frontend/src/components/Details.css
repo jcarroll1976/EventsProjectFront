@@ -1,5 +1,4 @@
-.Details  {
-    display: flex;
+.Details_Container  {
     border-style: ridge;
     border-color: #9E2A2B;
     border-width: 5px;
@@ -8,46 +7,62 @@
     flex-direction: column;
     align-items: center;
     padding: 20px;
+    margin: 40px;
     background-color: white;
+}
 
-   
+.Details_SideBySide_Container{
+    display: flex;
+    align-items: center;
 }
 
 
-
-.Details P, ul, li {
+.Details p, ul, li {
     text-align: center;
     padding: 0;
     margin: 0;
-
-   
 }
 
-img{
-    padding: 20px;
-    height: 50vh;
-
+.Details_img{
+    margin: 20px;
+    width: 50%;
+    height: 50%;
+    border-radius: 20%;
+    box-shadow: 5px 3px 10px 5px #335c67;
 }
 
 .EventDetails{
+    display: flex;
+    flex-direction: column;
     border-style: solid;
+    align-items: center;
     padding: 10px;
     font-family: 'Raleway';
- 
+}
+
+.Details_Btn{
+   padding: 10px;
+   margin-top:5px;
+}
+
+.Details_Btn:hover{
+    box-shadow: 20px 10px 30px 10px #E09F3E;
+}
+
+.Details_ReviewSection{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
 }
 
-button {
-    display: inline-block;
-    align-items:center;
-    
+.Details_ReviewSectionTitle{
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    color: #9E2A2B;
+    text-shadow: 3px 3px 5px #335c67;
 
-
-    
-}
-
-button:hover{
-    box-shadow: 20px 20px 50px 10px #E09F3E;
 }
 
 
@@ -58,13 +73,11 @@ button:hover{
 
     }
 
-    img{
+    .Details_img{
         width: 80%;
     }
 
-    h1{
-        width: 90%;
-        
+    .Details_SideBySide_Container{
+        flex-direction: column;
     }
-
 }
