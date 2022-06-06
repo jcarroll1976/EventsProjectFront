@@ -13,7 +13,7 @@ import "./Homepage.css";
 
 export default function Homepage(){
     const [allEventsList, setAllEventsList] = useState<Event[]>([]);
-    const [favoriteExists, setFavoriteExists] = useState(false)
+    const [favoritesList, setFavoritesList] = useState<Event[]>([])
     const {user} = useContext(AuthContext);
 
    /*
@@ -39,6 +39,10 @@ export default function Homepage(){
                 })
             }
         })
+        getUserFavorite(user!.uid).then(data=>{
+            setFavoritesList(data.favoriteEvents);
+        })
+        console.log(favoritesList);
     }, []);
  
     function displayRecommendedEvents(userPref: UserPreference): void{
@@ -76,28 +80,33 @@ export default function Homepage(){
         console.log(data);
         //if user.uid exists in favorite db then use put call
         if(data){
-            putUserFavorite(user!.uid, favoriteEvent);
+            putUserFavorite(user!.uid, favoriteEvent).then(()=>{
+                getUserFavorite(user!.uid).then(()=>{
+                    setFavoritesList(prev=> [...prev, favoriteEvent]);
+           })
+           })
         //if user.uid doesn't exisit in favorite db then use push call 
         }else{
-            postUserFavorite(favorite);
+            postUserFavorite(favorite).then(()=>{
+                getUserFavorite(user!.uid).then(()=>{
+                    setFavoritesList(prev=> [... prev, favoriteEvent]);
+           })
+           })
         }
        })
+
+       console.log(favoriteEvent);      
        
     };
 
     //Checking user favorites DB
-    
-    /*function checkFavorite():void {
-        getUserFavorite(user!.uid).then(data=>{
-            if(data){
-                setFavoriteExists(true);
-                console.log("Event is in favorites list")
-            }else{
-                setFavoriteExists(false);
-                console.log("Event not in favorites")
-            }
-        })
-    }*/
+    function favoriteExists(selectedEvent: Event):boolean|undefined {
+        if(favoritesList.some((event)=>event.id===selectedEvent.id)){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
     const [showPrefForm, setShowPrefForm] = useState(false);
 
@@ -134,8 +143,10 @@ const scrollToTop = () => {
                 <div className="Homepage_EventDisplay">{allEventsList.map((data, i)=>
                     <div className="Homepage_SingleEvent">
                     <SingleEvent key={i} event={data}/>,
-                    {/* Add conditional to remove favorite button & add heart */
-                    <button className="Homepage_AddBtn" onClick={()=>{{addSelectedFavorite(data); /*checkFavorite()*/}}}>Add to favorites</button>
+                    {favoriteExists(data)===false &&
+                    <button className="Homepage_AddBtn" onClick={()=>{{addSelectedFavorite(data); favoriteExists(data)}}}>
+                        Add to favorites
+                    </button>
                     }
                     </div>
                 //Add remove from favorites button if add to favorites is clicked
