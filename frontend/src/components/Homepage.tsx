@@ -100,8 +100,8 @@ export default function Homepage(){
     };
 
     //Checking user favorites DB
-    function favoriteExists(event: Event):boolean|undefined {
-        if(favoritesList.some((event)=>event.id)){
+    function favoriteExists(selectedEvent: Event):boolean|undefined {
+        if(favoritesList.some((event)=>event.id===selectedEvent.id)){
             return true;
         }else{
             return false;
@@ -143,7 +143,7 @@ const scrollToTop = () => {
                 <div className="Homepage_EventDisplay">{allEventsList.map((data, i)=>
                     <div className="Homepage_SingleEvent">
                     <SingleEvent key={i} event={data}/>,
-                    {favoriteExists(data)! &&
+                    {favoriteExists(data)===false &&
                     <button className="Homepage_AddBtn" onClick={()=>{{addSelectedFavorite(data); favoriteExists(data)}}}>
                         Add to favorites
                     </button>

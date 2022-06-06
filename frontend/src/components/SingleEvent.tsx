@@ -23,8 +23,9 @@ export default function SingleEvent({event}:Props){
         })
     }, []);
 
-    function favoriteExists(event: Event):boolean|undefined {
-        if(favoritesList.includes(event)){
+    //Checking user favorites DB
+    function favoriteExists(selectedEvent: Event):boolean|undefined {
+        if(favoritesList.some((event)=>event.id===selectedEvent.id)){
             return true;
         }else{
             return false;
@@ -33,8 +34,10 @@ export default function SingleEvent({event}:Props){
 
     return(
         <div className="SingleEvent_Container">
-            <h2 className="SingleEvent_Title">{event.title}</h2>
+            <div className="SingleEvent_TitleContainer">
             {favoriteExists(event)===true && <span className="SingleEvent_heart">&hearts;</span>}
+            <h2 className="SingleEvent_Title">{event.title}</h2>
+            </div>
             {(event.taxonomies && event.taxonomies.length >= 0) && <p className="SingleEvent_Type">Event Type: {event.taxonomies[0].name}</p>}
             {(event.performers && event.performers.length >= 0) && <img className="SingleEvent_Img" src={event.performers[0].image}/>}
             {((event.performers && event.performers.length > 1) && <p className="SingleEvent_Performer">Performers: {event.performers[0].name} and More! Click below to see all performers!</p>)||
