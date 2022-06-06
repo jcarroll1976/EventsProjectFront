@@ -12,21 +12,21 @@ export default function Header() {
 
     return (
         <div className = "Header">
-            <div className="titleheader"><h1>THE EVENT FINDER!!!!!</h1></div>
-            <div className="navbuttons">
+            <div className="TitleHeader"><h1>THE EVENT FINDER!!!!!</h1></div>
+            <div className="NavButtons">
                 {user ?
                 <span>
             <Link to={`/Login`}>
-                <button>Main Menu</button>
+                <button id="singleNav">Main Menu</button>
             </Link>
             <Link to={`/Favorites`}>
-                <button>Favorites</button>
+                <button id="singleNav">Favorites</button>
             </Link>
             </span>:
             <span></span>}
             {user ?
-             <button onClick={signOut}>Sign out</button>:
-            <button onClick={signInWithGoogle}>Sign in with Google</button>}
+             <button id="singleNav" onClick={signOut}>Sign out</button>:
+            <button id="singleNav" onClick={signInWithGoogle}>Sign in with Google</button>}
 
             </div>
         </div>
