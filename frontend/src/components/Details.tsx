@@ -38,6 +38,7 @@ function addReview(userReview:Review):void{
         setReviews([userReview]);
       })
     }
+    setShowReviewForm(false);
   })
 }
 
