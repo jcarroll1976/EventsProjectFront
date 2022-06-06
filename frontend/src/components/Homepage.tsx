@@ -123,16 +123,18 @@ const scrollToTop = () => {
     
     return(
         <div>
-             { showPrefForm ?
-            <div className="maincontent">
-            <UserPreferenceForm onSubmit={displayRecommendedEvents}/>
-            <button onClick= {() => setShowPrefForm(false)}>Nevermind!</button>
+            <div className="Homepage_UserForm_Container">
+                { showPrefForm ?
+                <div className="maincontent">
+                <UserPreferenceForm onSubmit={displayRecommendedEvents}/>
+                <button className = "ShowForm_Nvm" onClick= {() => setShowPrefForm(false)}>Nevermind!</button>
+                </div>
+                :
+                <>
+                <button className = "ShowForm_Fixed" onClick = {() => {setShowPrefForm(true); scrollToTop()}}>Take our Quiz to see personalized events!</button>
+                </>
+                }
             </div>
-             :
-             <>
-             <button className = "ShowForm" onClick = {() => {setShowPrefForm(true); scrollToTop()}}>Take our Quiz to see personalized events!</button>
-            </>
-            }
 
             <main>
                 { allEventsList.length === 0 ? 

@@ -2,6 +2,7 @@
     display: flex;
     flex-flow: wrap;
     justify-content: space-evenly;
+    margin-top: 30px;
 }
 
 .Homepage_SingleEvent{
@@ -22,6 +23,25 @@
     color: white;
     border-color: #9E2A2B;
     box-shadow: 5px 5px 10px 3px #335c67;
+}
+
+.Homepage_UserForm_Container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.maincontent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ShowForm_Nvm{
+    width: 10%;
+    margin-top: 10px;
+    padding: 5px;
+    font-family: "Lato";
 }
 
 @media only screen and (max-width: 600px) {
