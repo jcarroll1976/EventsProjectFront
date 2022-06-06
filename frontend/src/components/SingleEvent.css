@@ -23,13 +23,33 @@
 .SingleEvent_Img{
     width: 80%;
     border-radius: 20%;
+    box-shadow: 5px 3px 10px 5px #335c67;
 }
 
 .SingleEvent_DetailsBtn{
     padding: 10px 30px;
 }
 
-@media only screen and (max-width: 600px) {
-    
+.SingleEvent_heart{
+    color:#9E2A2B;
+    font-size: 50px;
+    text-shadow: -2px 3px 2px #335c67;
+}
 
+.SingleEvent_TitleContainer{
+    display: flex;
+}
+
+@media only screen and (max-width: 600px) {
+    .SingleEvent_Img{
+        width: 65%;
+    }
+
+    .SingleEvent_Container{
+
+    }
+
+    .SingleEvent_Title{
+        font-size: 15px;
+    }
 }
