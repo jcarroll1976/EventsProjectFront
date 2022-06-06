@@ -70,9 +70,7 @@ function addReview(userReview:Review):void{
      </Link>
       </div>
 
-     <a href={eventById?.url}>
-     <button>Get your tickets with Seat Geek here!</button> 
-     </a>
+     
      
      
      <p>Event Reviews</p>
