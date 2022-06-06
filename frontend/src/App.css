@@ -1,0 +1,41 @@
+.headerdiv {
+    position: sticky;
+    top: 0px;
+}
+
+.ShowForm{
+    position: fixed;
+}
+
+h1{
+    font-family: "Raleway";
+}
+
+body{
+    font-family: "Lato";
+    background-color: lightgray;
+}
+
+button{
+    font-family: "Lato";
+    background-color: #335C67;
+    color: white;
+    border-color: #335C67;
+}
+
+button:hover{
+    background-color:  white;
+    color:#335C67;
+    border-color: #335C67;
+    font-weight: bold;
+}
+
+.headerdiv {
+    position: sticky;
+    top: 0px;
+}
+
+.ShowForm{
+    position: fixed;
+}
+

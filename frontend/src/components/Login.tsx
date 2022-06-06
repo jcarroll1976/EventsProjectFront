@@ -8,25 +8,18 @@ import background from "../pexels-maegan-neufeld-342411.jpg"
 
 export default function Login() {
     const {user} = useContext(AuthContext)
-
-   const myStyle={
-        backgroundImage: `url(${background})`,
-        height:'100vh',
-        marginTop:'-70px',
-        fontSize:'50px',
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-        opacity: 0.5
-    };
+    const imgClass = ["Login_BackgroundImg", "shimmer"]
 
     return (
-        <div className = "LoginComponent" /*style={myStyle}*/>
+        <div className = "LoginComponent" >
             {user ?
             <div><Homepage/></div>:
             <div>
-                <h1>Welcome to your personal Event Generator!</h1>
-                <h2>Please sign in below.</h2>
-                <button onClick={signInWithGoogle}>Sign in with Google</button>
+                <img className={imgClass.join(" ")} src={background}/>
+                <main className="Login_GreetingContainer">
+                    <h1 className="Login_Welcome">Welcome to your personal Event Generator!</h1>
+                    <h2 className="Login_SignIn">Please sign in above to find events just for you!</h2>
+                </main>
             </div>
             }
 

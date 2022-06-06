@@ -1,0 +1,52 @@
+.Login_GreetingContainer{
+    background: rgb(255,255,255);
+    background: radial-gradient(circle, rgba(255,255,255,0.6) 13%, rgba(255,243,176,0.7) 35%, rgba(128,128,128, 0.9) 75%);
+    color: #335C67;
+    -webkit-box-shadow: 20px 12px 44px 22px rgba(0,0,0,0.6);
+    -moz-box-shadow: 20px 12px 44px 22px rgba(0,0,0,0.6);
+    box-shadow: 20px 12px 44px 22px rgba(0,0,0,0.6);
+    border-radius: 50px;
+    padding: 50px;
+    position: relative;
+    top: 5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+    width: 80%;
+}
+
+.Login_Welcome{
+    font-size: 40px;
+    padding: 40px;
+    margin: 10px;
+}
+
+.Login_SignIn{
+    border-style: solid;
+    margin: 0px;
+    padding: 20px;
+}
+
+
+.Login_BackgroundImg{
+    height: 110vh;
+    width: 100vw;
+    position: fixed;
+    z-index: -1;
+    opacity: 0.5;
+    top: -10px
+}
+
+.shimmer {
+    color: #FFF3B0;
+    display:inline-block;
+    -webkit-mask:linear-gradient(-60deg,#000 30%,#0005,#000 70%) right/300% 100%;
+    background-repeat: no-repeat;
+    animation: shimmer 3.0s infinite;
+  }
+  
+  @keyframes shimmer {
+    100% {-webkit-mask-position:left}
+  }
