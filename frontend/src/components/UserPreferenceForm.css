@@ -1,0 +1,62 @@
+.UserPreferenceForm {
+    border-style: ridge;
+    border-color: #9E2A2B;
+    border-width: 5px;
+    border-radius: 10%;
+    width: 50%;
+    text-align: center;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    
+}
+
+.type{
+    text-align: start;
+}
+
+p{
+    text-align: center;
+}
+
+
+/*.maincontent{
+    border-style: ridge;
+    border-color: #9E2A2B;
+    border-width: 5px;
+    border-radius: 10%;
+    width: 70%;
+    text-align: center;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+
+}*/
+
+input[type=number]:focus {
+    background-color: lightblue;
+
+}
+   
+
+
+.submit {
+    margin: 0px 10px;
+    padding: 5px;
+    background-color: #9E2A2B;
+}
+
+.submit:hover{
+    color: white;
+    border-color: #9E2A2B;
+    box-shadow: 5px 5px 10px 3px #335c67;
+}
+
+
+
+
+
+
+

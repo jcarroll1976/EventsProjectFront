@@ -1,5 +1,5 @@
 import {FormEvent, useEffect, useState} from 'react';
-//import './UserPreferenceForm.css';
+import './UserPreferenceForm.css';
 import {UserPreference} from "../models/eventModels";
 
 
@@ -262,10 +262,10 @@ function UserPreferenceForm({onSubmit}: Props) {
     }
 
     return(
-        <div className='UserPreferenceForm'>
+        <div className="UserPreferenceForm">
             <form onSubmit={handleSubmit}>   
-              <h1> Welcome to Event Finder </h1 >
-              <h4>PLEASE TAKE OUR QUIZ TO FIND YOUR EVENT STYLE</h4>
+              
+              <h2>PLEASE TAKE OUR QUIZ TO FIND YOUR EVENT STYLE</h2>
 
                 <p>
                     <label htmlFor='postalcode'>What is your desired location? </label>
@@ -276,7 +276,7 @@ function UserPreferenceForm({onSubmit}: Props) {
 
                 <p>
                     <label htmlFor='type'>Which Type of Events Are You Looking For? Please select all that apply</label>
-                    <input type= "checkbox" value= "Sports" onChange={handleEventChange} checked={sportsCheckBox} />Sports
+                    <input type= "checkbox"  value= "Sports" onChange={handleEventChange} checked={sportsCheckBox}  />Sports
                     <input type= "checkbox" value= "Concert" onChange={handleEventChange}checked={concertsCheckBox}  />Concerts
                     <input type= "checkbox" value= "Comedy" onChange={handleEventChange} checked={comedyCheckBox} />Comedy
                     <input type= "checkbox" value= "Broadway" onChange={handleEventChange} checked={broadwayCheckBox} />Broadway
@@ -285,7 +285,7 @@ function UserPreferenceForm({onSubmit}: Props) {
                 </p>
 
                 {eventType.includes("Concert") &&
-                <p>  
+                <p className='genre'>  
                     <label htmlFor='genre'>What Genre Of Music Do You Like? Please select all that apply</label>
                     <input type= "checkbox" value= "Hard_Rock" onChange={handleGenreChange}checked={hardRockCheckBox}  />Hard Rock
                     <input type= "checkbox" value= "Reggae" onChange={handleGenreChange} checked ={reggaeCheckBox}/>Reggae 

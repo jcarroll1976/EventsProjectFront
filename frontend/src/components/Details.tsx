@@ -38,6 +38,7 @@ function addReview(userReview:Review):void{
         setReviews([userReview]);
       })
     }
+    setShowReviewForm(false);
   })
 }
 
@@ -58,7 +59,7 @@ function addReview(userReview:Review):void{
         <button className="Details_Btn" >Get your tickets with Seat Geek here!</button> 
         </a>
       </main>
-
+       
      </div>
      
      <section className="Details_ReviewSection">
