@@ -23,6 +23,7 @@
 .SingleEvent_Img{
     width: 80%;
     border-radius: 20%;
+    box-shadow: 5px 3px 10px 5px #335c67;
 }
 
 .SingleEvent_DetailsBtn{
