@@ -45,6 +45,11 @@ export function fetchEventById(id:number):Promise<Event>{
     .then(response=>response.data)
 }
 
+export function EventPage(id:number):Promise<Event>{
+    return axios.get("https://api.seatgeek.com/2/events/"+id+"?client_id="+clientID)
+    .then(response=>response.data)
+}
+
 export function postUserPref(userData: UserPreference):Promise<UserPreference>{
     return axios.post("https://us-central1-final-project-event-app.cloudfunctions.net/api/preferences", userData)
     .then(response=>response.data)

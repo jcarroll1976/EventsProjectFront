@@ -11,6 +11,7 @@ import ReactPaginate from "react-paginate";
 
 
 
+
 export default function Homepage(){
     const [allEventsList, setAllEventsList] = useState<Event[]>([]);
     const [favoriteExists, setFavoriteExists] = useState(false)
