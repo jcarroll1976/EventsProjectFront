@@ -8,12 +8,12 @@ const clientID = process.env.REACT_APP_MYCLIENTID;
 
 const baseUrl = `https://api.seatgeek.com/2/events?client_id=${clientID}&per_page=24&page=1`;
 
-export function fetchAllEvents():Promise<Event[]>{
-    return axios.get(baseUrl)
+export function fetchAllEvents(page:number):Promise<Event[]>{
+    return axios.get(`https://api.seatgeek.com/2/events?client_id=${clientID}&per_page=24&page=${page}`)
     .then(response=>response.data.events);
 }
 
-export function fetchRecommendedEvents(userData: UserPreference):Promise<Event[]>{
+export function fetchRecommendedEvents(userData: UserPreference, page:number):Promise<Event[]>{
 //BASEurl VARIABLE-- looping to add to the baseURL if certain properties exist in the user pref
 
 let postalCode = userData.postal_code;
@@ -21,7 +21,7 @@ let selectedEvent = userData.event;
 let selectedSport = userData.sport || [];
 let selectedGenre = userData.genre || [];
 
-let newApiLink = baseUrl+"&postal_code="+postalCode;
+let newApiLink = "https://api.seatgeek.com/2/events?client_id="+clientID+"&per_page=24&page="+page+"&postal_code="+postalCode;
 
 for(let i = 0; i < selectedEvent.length; i++){
     newApiLink += "&taxonomies.name="+selectedEvent[i]; 
@@ -45,8 +45,9 @@ export function fetchEventById(id:number):Promise<Event>{
     .then(response=>response.data)
 }
 
-export function EventPage(id:number):Promise<Event>{
-    return axios.get("https://api.seatgeek.com/2/events/"+id+"?client_id="+clientID)
+
+export function EventPage(page:number):Promise<Event>{
+    return axios.get(`https://api.seatgeek.com/2/events?client_id=${clientID}&per_page=24&page=${page}`)
     .then(response=>response.data)
 }
 

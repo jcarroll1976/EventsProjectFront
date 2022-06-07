@@ -7,7 +7,6 @@ import {signOut} from '../firebaseconfig'
 import { User } from "firebase/auth";
 import AuthContext from '../context/AuthContext';
 import "./Homepage.css";
-import ReactPaginate from "react-paginate";
 
 
 
@@ -16,7 +15,8 @@ export default function Homepage(){
     const [allEventsList, setAllEventsList] = useState<Event[]>([]);
     const [favoritesList, setFavoritesList] = useState<Event[]>([])
     const {user} = useContext(AuthContext);
-
+    const [page, setPage] = useState(1)
+    const [userPref, setUserPref] = useState<UserPreference|null>(null);
    /*
    Hard coded data to test the API call 
    let userData = {
@@ -30,12 +30,13 @@ export default function Homepage(){
         getUserPref(user!.uid).then(data=>{
             console.log(`User id: ${user!.uid}`);
             console.log(data);
+            setUserPref(data);
             if(data){
-                fetchRecommendedEvents(data).then(recEvent=>{
+                fetchRecommendedEvents(data,page).then(recEvent=>{
                     setAllEventsList(recEvent); 
                 })
             }else{
-                fetchAllEvents().then(allEvents=>{
+                fetchAllEvents(page).then(allEvents=>{
                     setAllEventsList(allEvents);
                 })
             }
@@ -49,10 +50,11 @@ export default function Homepage(){
     function displayRecommendedEvents(userPref: UserPreference): void{
         userPref.id = user?.uid;
             getUserPref(user!.uid).then(data=>{
+                setUserPref(data)
                 //if data in userPref DB then PUT call
                 if(data){
                     putUserPref(user!.uid, userPref)
-                    .then(updatedPref=>fetchRecommendedEvents(updatedPref)
+                    .then(updatedPref=>fetchRecommendedEvents(updatedPref,page)
                     .then(data=>{
                         setAllEventsList(data)
                     })
@@ -61,7 +63,7 @@ export default function Homepage(){
                 //if no data in userPref DB then POST call
                 else{
                     postUserPref(userPref)
-                    .then(newPref=>fetchRecommendedEvents(newPref)
+                    .then(newPref=>fetchRecommendedEvents(newPref,page)
                     .then(data=>{
                         setAllEventsList(data)
                     }))
@@ -121,6 +123,35 @@ const scrollToTop = () => {
   });
 };
 
+function nextPage() {
+    setPage(prev => prev + 1)
+    if(userPref) {
+        fetchRecommendedEvents(userPref,page).then(recEvent=>{
+            setAllEventsList(recEvent); 
+        })
+    }
+    else {
+        fetchAllEvents(page).then(allEvents=>{
+            setAllEventsList(allEvents);
+        })
+    }
+
+}
+function previousPage() {
+    setPage(prev => prev - 1)
+    if(userPref) {
+        fetchRecommendedEvents(userPref,page).then(recEvent=>{
+            setAllEventsList(recEvent); 
+        })
+    }
+    else {
+        fetchAllEvents(page).then(allEvents=>{
+            setAllEventsList(allEvents);
+        })
+    }
+
+}
+
     
     return(
         <div>
@@ -156,6 +187,7 @@ const scrollToTop = () => {
                 )}</div>
                 }
             </main>
+            <button onClick={previousPage}>Previous</button> <button onClick={nextPage}>Next</button>
         </div>
     )
 }
