@@ -8,9 +8,9 @@ interface Props {
 export default function SingleUserReview({review}:Props){
     return (
         <div className="SingleUserReview">
-            <p>{review.title}</p>
+            <h3>Title: {review.title}</h3>
             <p>Reviewed by: {review.name}</p>
-            <p>{review.review}</p>
+            <p>Review: {review.review}</p>
         </div>
     )
 }

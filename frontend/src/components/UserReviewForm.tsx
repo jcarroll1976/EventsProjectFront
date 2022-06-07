@@ -1,5 +1,6 @@
 import { FormEvent, useState } from "react";
 import { Review } from "../models/eventModels";
+import "./UserReviewForm.css"
 
 
 
@@ -36,7 +37,7 @@ function UserReviewForm({onSubmit}:Props) {
                     </p>
                 <p>
                         <label htmlFor='UserReview_name'>Name</label>
-                        <input id='UserReview__name' value={name}
+                        <input id='UserReview__name' required value={name}
                                 onChange={e => setName(e.target.value)} />
                     </p>
                     <p>
