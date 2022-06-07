@@ -69,10 +69,10 @@ export interface Review {
     name:string;
     review:string;
     userId?:string;
-    eventId?:number;
+    eventID?:number;
 }
 
 export interface EventReviews {
-    eventId?:number;
+    eventID?:number;
     review: Review[];
 }

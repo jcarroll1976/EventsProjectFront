@@ -103,7 +103,7 @@ export function postUserReview(userReview: EventReviews):Promise<EventReviews>{
 
 //Editing user review
 export function putUserReview(eventId: number, review: Review):Promise<Review>{
-    return axios.post("https://us-central1-final-project-event-app.cloudfunctions.net/api/reviews"+eventId, review)
+    return axios.put("https://us-central1-final-project-event-app.cloudfunctions.net/api/reviews/"+eventId, review)
     .then(response=>response.data)
 }
 //Strech-Goal--Incrementing page number with a next buttonapi 

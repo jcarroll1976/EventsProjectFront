@@ -35,11 +35,15 @@ function addReview(userReview:Review):void{
   getEventReviews(id).then(data =>{
     if(data){
       putUserReview(id, userReview).then(data=>{
-        setReviews(prev=> [...prev, userReview]);
+        getEventReviews(id).then(eventReviews=>
+          setReviews(eventReviews.review)
+          )
       })
     } else {
       postUserReview(newEventReview).then(data=>{
-        setReviews([userReview]);
+        getEventReviews(id).then(eventReviews=>
+        setReviews(eventReviews.review)
+        )
       })
     }
     setShowReviewForm(false);
