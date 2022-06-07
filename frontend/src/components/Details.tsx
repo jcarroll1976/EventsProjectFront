@@ -21,16 +21,20 @@ export default function Details(){
     fetchEventById(id).then(data=>{
         setEventById(data);
     })
+    getEventReviews(id).then(data=>{
+      setReviews(data.review);
+    })
+    console.log(reviews);
 }, []);
 
 function addReview(userReview:Review):void{
   let newEventReview = {
-    eventID: userReview.eventId,
+    eventID: id,
     review: [userReview]
   }
-  getEventReviews(userReview.eventId!).then(data =>{
+  getEventReviews(id).then(data =>{
     if(data){
-      putUserReview(userReview.eventId!, userReview).then(data=>{
+      putUserReview(id, userReview).then(data=>{
         setReviews(prev=> [...prev, userReview]);
       })
     } else {
