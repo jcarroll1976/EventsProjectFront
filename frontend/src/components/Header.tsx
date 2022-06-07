@@ -12,7 +12,7 @@ export default function Header() {
 
     return (
         <div className = "Header">
-            <div className="TitleHeader"><h1>THE EVENT FINDER!!!!!</h1></div>
+            <div className="TitleHeader"><h1>THE EVENT FINDER</h1></div>
             <div className="NavButtons">
                 {user ?
                 <span>
