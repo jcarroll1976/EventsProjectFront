@@ -24,7 +24,7 @@ export default function Homepage(){
         genre: ["rap", "country"],
         sport: ["basketball"],
     }*/
-
+    
     useEffect(()=>{
         getUserPref(user!.uid).then(data=>{
             console.log(`User id: ${user!.uid}`);
