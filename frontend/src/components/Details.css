@@ -65,6 +65,12 @@
 
 }
 
+.Details_EventReviews_Container{
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-evenly;
+}
+
 
 @media only screen and (max-width: 600px) {
     

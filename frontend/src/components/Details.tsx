@@ -71,9 +71,11 @@ function addReview(userReview:Review):void{
       <button className="Details_Btn" onClick= {() => setShowReviewForm(true)}>Leave A Review!</button>
         {showReviewForm &&
               <UserReviewForm onSubmit={addReview}/>}
+      <div className="Details_EventReviews_Container">
         {reviews.map((eventReview, i)=> 
               <SingleUserReview review={eventReview}/>
           )}
+      </div>
     </section>
     </div>
   )
